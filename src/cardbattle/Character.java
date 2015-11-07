@@ -33,7 +33,7 @@ public class Character {
 		skillDamage = skill.damage;
 		skillSpeed = skill.speed;
 
-		if (slashing && skill.properties.contains(SLASH_BOOSTED)) {
+		if (slashing && skill.has(SLASH_BOOSTED)) {
 			skillSpeed++;
 		}
 		if (knockedDown) {

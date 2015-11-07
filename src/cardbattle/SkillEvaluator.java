@@ -42,8 +42,9 @@ public class SkillEvaluator {
 	}
 
 	private void applySkillEffects(Character source, Character opponent) {
-		source.slashing = source.getSkill().properties.contains(BOOST_SLASH) && !source.damaged;
-		opponent.knockedDown = source.getSkill().properties.contains(KNOCKDOWN) && opponent.damaged;
+		Skill sourceSkill = source.getSkill();
+		source.slashing = sourceSkill.has(BOOST_SLASH) && !source.damaged;
+		opponent.knockedDown = sourceSkill.has(KNOCKDOWN) && opponent.damaged;
 
 		source.clearSkill();
 	}

@@ -6,7 +6,6 @@ import java.util.Set;
 import static cardbattle.Property.DELAYED_EFFECT_2;
 import static cardbattle.Property.SLASH_BOOSTED;
 
-
 public enum Skill {
 
 	// Se não leva dano, aumenta V+1 para outros golpes
@@ -30,7 +29,7 @@ public enum Skill {
 	public final Integer damage;
 	public final Integer speed;
 	public final Integer effectDelay;
-	public final Set<Property> properties;
+	private final Set<Property> properties;
 
 	private Skill(Integer damage, Speed speed, Property... properties) {
 		this.damage = damage;
@@ -48,5 +47,9 @@ public enum Skill {
 			}
 		}
 		this.effectDelay = effectDelay;
+	}
+
+	public boolean has(Property property) {
+		return properties.contains(property);
 	}
 }

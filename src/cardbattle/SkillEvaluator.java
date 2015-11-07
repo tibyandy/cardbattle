@@ -1,5 +1,8 @@
 package cardbattle;
 
+import static cardbattle.Property.BOOST_SLASH;
+import static cardbattle.Property.KNOCKDOWN;
+
 public class SkillEvaluator {
 
 	public void evaluateSkills(Character[] ch) {
@@ -39,8 +42,8 @@ public class SkillEvaluator {
 	}
 
 	private void applySkillEffects(Character source, Character opponent) {
-		source.slashing = source.getSkill().boostSlash && !source.damaged;
-		opponent.knockedDown = source.getSkill().knockdown && opponent.damaged;
+		source.slashing = source.getSkill().properties.contains(BOOST_SLASH) && !source.damaged;
+		opponent.knockedDown = source.getSkill().properties.contains(KNOCKDOWN) && opponent.damaged;
 
 		source.clearSkill();
 	}

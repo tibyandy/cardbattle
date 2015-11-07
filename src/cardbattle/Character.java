@@ -1,5 +1,7 @@
 package cardbattle;
 
+import static cardbattle.Property.SLASH_BOOSTED;
+
 public class Character {
 
 	int skillDamage = 0;
@@ -31,7 +33,7 @@ public class Character {
 		skillDamage = skill.damage;
 		skillSpeed = skill.speed;
 
-		if (slashing && skill.slashBoosted) {
+		if (slashing && skill.properties.contains(SLASH_BOOSTED)) {
 			skillSpeed++;
 		}
 		if (knockedDown) {

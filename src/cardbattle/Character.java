@@ -1,27 +1,21 @@
 package cardbattle;
 
-import static cardbattle.Skill.HEAVY_SLASH;
 import static cardbattle.Skill.SLASH;
 
-public class Character extends BattleEntity {
+public class Character {
 
-	private boolean slashing = false;
-	private boolean knockedDown = false;
+	int skillDamage = 0;
+	int skillSpeed = 0;
+	int hp;
+	boolean damaged = false;
+	
+	boolean slashing = false;
+	boolean knockedDown = false;
 
 	private Skill skill = Skill.NONE;
-	private Character opponent = null;
-	private CardBattle battle;
 
-	public Character(CardBattle battle) {
+	public Character() {
 		hp = 30;
-		this.battle = battle;
-	}
-
-	public Character getOpponent() {
-		return opponent;
-	}
-	public void setOpponent(Character opponent) {
-		this.opponent = opponent;
 	}
 
 	public Skill getSkill() {
@@ -44,31 +38,8 @@ public class Character extends BattleEntity {
 		return skillSpeed;
 	}
 
-	public void executeSkill() {
-		opponent.hp -= skillDamage;
-		opponent.damaged = skillDamage > 0;
-	}
-
 	public int getHP() {
 		return hp;
-	}
-
-	public boolean isSlashing() {
-		return slashing;
-	}
-	public void setSlashing(boolean slashing) {
-		this.slashing = slashing;
-	}
-
-	public void applySkillEffects() {
-		if (skill == SLASH && !damaged) {
-			slashing = true;
-		} else if (skill == HEAVY_SLASH && opponent.damaged) {
-			opponent.knockedDown = true;
-		}
-		skill = Skill.NONE;
-		skillDamage = 0;
-		skillSpeed = 0;
 	}
 
 	public int getSkillDamage() {

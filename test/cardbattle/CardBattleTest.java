@@ -22,7 +22,7 @@ public class CardBattleTest {
 	public void testSkill() {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, ATTACK_QUICK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(2), is(25));
 		assertThat(b.hp(1), is(30));
 	}
@@ -31,7 +31,7 @@ public class CardBattleTest {
 	public void testSkill2() {
 		CardBattle b = new CardBattle();
 		b.setSkill(2, ATTACK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(20));
 		assertThat(b.hp(2), is(30));
 	}
@@ -40,11 +40,11 @@ public class CardBattleTest {
 	public void testBattleOver() {
 		CardBattle b = new CardBattle();
 		b.setSkill(2, ATTACK_QUICK);
-		b.evaluateSkills();
+		b.endTurn();
 		b.setSkill(2, ATTACK);
-		b.evaluateSkills();
+		b.endTurn();
 		b.setSkill(2, ATTACK_SLOW);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.winner(), is(2));
 	}
 
@@ -52,9 +52,9 @@ public class CardBattleTest {
 	public void testBattleOver2() {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, ATTACK_SLOW);
-		b.evaluateSkills();
+		b.endTurn();
 		b.setSkill(1, ATTACK_SLOW);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.winner(), is(1));
 	}
 
@@ -63,10 +63,10 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(2, ATTACK_SLOW);
 		b.setSkill(1, ATTACK_SLOW);
-		b.evaluateSkills();
+		b.endTurn();
 		b.setSkill(1, ATTACK_SLOW);
 		b.setSkill(2, ATTACK_SLOW);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.winner(), is(0));
 	}
 
@@ -75,7 +75,7 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, ATTACK_QUICK);
 		b.setSkill(2, ATTACK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30));
 		assertThat(b.hp(2), is(25));
 		assertThat(b.winner(), nullValue());
@@ -86,7 +86,7 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, ATTACK_SLOW);
 		b.setSkill(2, ATTACK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(20));
 		assertThat(b.hp(2), is(30));
 		assertThat(b.winner(), nullValue());
@@ -103,7 +103,7 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, ATTACK);
 //		b.setSkill(2, SKILL_FIREBALL);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(18));
 		assertThat(b.hp(2), is(20));
 		assertThat(b.winner(), nullValue());
@@ -114,7 +114,7 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(2, ATTACK);
 //		b.setSkill(1, SKILL_FIREBALL);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(2), is(18));
 		assertThat(b.hp(1), is(20));
 		assertThat(b.winner(), nullValue());
@@ -125,7 +125,7 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(2, ATTACK_QUICK);
 //		b.setSkill(1, SKILL_FIREBALL);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(2), is(30));
 		assertThat(b.hp(1), is(25));
 		assertThat(b.winner(), nullValue());
@@ -136,7 +136,7 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 //		b.setSkill(2, SKILL_FIREBALL);
 //		b.setSkill(1, SKILL_FIREBALL);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(2), is(30));
 		assertThat(b.hp(1), is(30));
 		assertThat(b.winner(), nullValue());
@@ -147,12 +147,12 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, SLASH);
 		b.setSkill(2, ATTACK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(20));
 		assertThat(b.hp(2), is(27));
 		b.setSkill(1, SLASH);
 		b.setSkill(2, ATTACK_QUICK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(15));
 		assertThat(b.hp(2), is(27));
 		assertThat(b.winner(), nullValue());
@@ -162,12 +162,12 @@ public class CardBattleTest {
 	public void testSlashHeavySlash() {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, SLASH);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30));
 		assertThat(b.hp(2), is(30 - SLASH.damage));
 		b.setSkill(1, HEAVY_SLASH); // Mais rápido
 		b.setSkill(2, HEAVY_SLASH); 
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30));
 		assertThat(b.hp(2), is(30 - SLASH.damage - HEAVY_SLASH.damage));
 		assertThat(b.winner(), nullValue());
@@ -177,10 +177,10 @@ public class CardBattleTest {
 	public void testHeavySlashKnockdownDraw() {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, HEAVY_SLASH);
-		b.evaluateSkills();
+		b.endTurn();
 		b.setSkill(1, HEAVY_SLASH);
 		b.setSkill(2, ATTACK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30 - ATTACK.damage));
 		assertThat(b.hp(2), is(30 - 2 * HEAVY_SLASH.damage));
 		assertThat(b.winner(), nullValue());
@@ -190,10 +190,10 @@ public class CardBattleTest {
 	public void testHeavySlashKnockdownWin() {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, HEAVY_SLASH);
-		b.evaluateSkills();
+		b.endTurn();
 		b.setSkill(1, HEAVY_SLASH);
 		b.setSkill(2, ATTACK_SLOW);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30));
 		assertThat(b.hp(2), is(30 - 2 * HEAVY_SLASH.damage));
 		assertThat(b.winner(), nullValue());
@@ -204,12 +204,12 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, HEAVY_SLASH);
 		b.setSkill(2, HEAVY_SLASH);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30 - HEAVY_SLASH.damage));
 		assertThat(b.hp(2), is(30 - HEAVY_SLASH.damage));
 		b.setSkill(1, HEAVY_SLASH);
 		b.setSkill(2, HEAVY_SLASH);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30 - 2 * HEAVY_SLASH.damage));
 		assertThat(b.hp(2), is(30 - 2 * HEAVY_SLASH.damage));
 		assertThat(b.winner(), nullValue());
@@ -220,12 +220,12 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, HEAVY_SLASH);
 		b.setSkill(2, ATTACK_QUICK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30 - ATTACK_QUICK.damage));
 		assertThat(b.hp(2), is(30));
 		b.setSkill(1, HEAVY_SLASH);
 		b.setSkill(2, ATTACK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30 - ATTACK_QUICK.damage - ATTACK.damage));
 		assertThat(b.hp(2), is(30));
 		assertThat(b.winner(), nullValue());
@@ -236,12 +236,12 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, SLASH);
 		b.setSkill(2, ATTACK_QUICK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30 - ATTACK_QUICK.damage));
 		assertThat(b.hp(2), is(30));
 		b.setSkill(1, TRIPLE_SLASH);
 		b.setSkill(2, ATTACK_QUICK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30 - 2*ATTACK_QUICK.damage));
 		assertThat(b.hp(2), is(30));
 	}
@@ -251,12 +251,12 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, SLASH);
 		b.setSkill(2, ATTACK_SLOW);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30));
 		assertThat(b.hp(2), is(30 - SLASH.damage));
 		b.setSkill(1, TRIPLE_SLASH);
 		b.setSkill(2, ATTACK_QUICK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30 - ATTACK_QUICK.damage));
 		assertThat(b.hp(2), is(30 - SLASH.damage - TRIPLE_SLASH.damage));
 	}
@@ -266,7 +266,7 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, METEOR);
 		b.setSkill(2, SLASH);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30 - SLASH.damage));
 		assertThat(b.hp(2), is(30 - METEOR.damage));
 	}
@@ -276,7 +276,7 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, METEOR);
 		b.setSkill(2, HEAVY_SLASH);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30 - HEAVY_SLASH.damage));
 		assertThat(b.hp(2), is(30 - METEOR.damage));
 	}
@@ -286,7 +286,7 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, METEOR);
 		b.setSkill(2, ATTACK_QUICK);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30 - ATTACK_QUICK.damage));
 		assertThat(b.hp(2), is(30));
 	}
@@ -296,7 +296,7 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, METEOR);
 		b.setSkill(2, ATTACK_D_SPEED);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30));
 		assertThat(b.hp(2), is(30 - METEOR.damage));
 	}
@@ -306,7 +306,7 @@ public class CardBattleTest {
 		CardBattle b = new CardBattle();
 		b.setSkill(1, METEOR);
 		b.setSkill(2, ATTACK_E_SPEED);
-		b.evaluateSkills();
+		b.endTurn();
 		assertThat(b.hp(1), is(30));
 		assertThat(b.hp(2), is(30 - METEOR.damage));
 	}

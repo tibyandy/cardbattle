@@ -1,5 +1,8 @@
 package cardbattle;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static cardbattle.Property.DELAYED_EFFECT_2;
 import static cardbattle.Property.SLASH_BOOSTED;
 
@@ -27,38 +30,23 @@ public enum Skill {
 	public final Integer damage;
 	public final Integer speed;
 	public final Integer effectDelay;
+	public final Set<Property> properties;
 
-	public final boolean slashBoosted;
-	public final boolean boostSlash;
-	public final boolean knockdown;
-	
 	private Skill(Integer damage, Speed speed, Property... properties) {
 		this.damage = damage;
 		this.speed = speed.n;
 
 		Integer effectDelay = null;
-		boolean slashBoosted = false;
-		boolean boostSlash = false;
-		boolean knockdown = false;
+		this.properties = new HashSet<Property>();
 		for (Property property : properties) {
+			this.properties.add(property);
+
 			switch (property) {
 			case DELAYED_EFFECT_2:
 				effectDelay = 2;
 				break;
-			case SLASH_BOOSTED:
-				slashBoosted = true;
-				break;
-			case BOOST_SLASH:
-				boostSlash = true;
-				break;
-			case KNOCKDOWN:
-				knockdown = true;
-				break;
 			}
 		}
 		this.effectDelay = effectDelay;
-		this.slashBoosted = slashBoosted;
-		this.boostSlash = boostSlash;
-		this.knockdown = knockdown;
 	}
 }

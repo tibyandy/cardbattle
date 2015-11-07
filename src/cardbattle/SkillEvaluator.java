@@ -1,8 +1,5 @@
 package cardbattle;
 
-import static cardbattle.Skill.HEAVY_SLASH;
-import static cardbattle.Skill.SLASH;
-
 public class SkillEvaluator {
 
 	public void evaluateSkills(Character[] ch) {
@@ -42,13 +39,9 @@ public class SkillEvaluator {
 	}
 
 	private void applySkillEffects(Character source, Character opponent) {
-		if (source.getSkill() == SLASH && !source.damaged) {
-			source.slashing = true;
-		} else if (source.getSkill() == HEAVY_SLASH && opponent.damaged) {
-			opponent.knockedDown = true;
-		}
-		source.setSkill(Skill.NONE);
-		source.skillDamage = 0;
-		source.skillSpeed = 0;
+		source.slashing = source.getSkill().boostSlash && !source.damaged;
+		opponent.knockedDown = source.getSkill().knockdown && opponent.damaged;
+
+		source.clearSkill();
 	}
 }

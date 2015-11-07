@@ -1,14 +1,12 @@
 package cardbattle;
 
-import static cardbattle.Skill.SLASH;
-
 public class Character {
 
 	int skillDamage = 0;
 	int skillSpeed = 0;
 	int hp;
+
 	boolean damaged = false;
-	
 	boolean slashing = false;
 	boolean knockedDown = false;
 
@@ -18,15 +16,22 @@ public class Character {
 		hp = 30;
 	}
 
+	public void clearSkill() {
+		skill = Skill.NONE;
+		skillDamage = 0;
+		skillSpeed = 0;
+	}
+
 	public Skill getSkill() {
 		return skill;
 	}
+
 	public void setSkill(Skill skill) {
 		this.skill = skill;
 		skillDamage = skill.damage;
 		skillSpeed = skill.speed;
 
-		if (slashing && skill != SLASH) {
+		if (slashing && skill.slashBoosted) {
 			skillSpeed++;
 		}
 		if (knockedDown) {

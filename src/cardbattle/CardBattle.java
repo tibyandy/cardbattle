@@ -7,18 +7,9 @@ public class CardBattle {
 	private Character[] ch = new Character[2];
 	private SkillEvaluator skillEvaluator = new SkillEvaluator();
 
-	/**
-	 * Apenas para testes sem personagens.
-	 */
-	public CardBattle() {
+	public CardBattle(Character... characters) {
 		for (int i = 0; i < 2; i++) {
-			ch[i] = new Character();
-		}
-	}
-
-	public CardBattle(CharacterTemplate... characters) {
-		for (int i = 0; i < 2; i++) {
-			ch[i] = new Character(characters[i]);
+			ch[i] = characters[i];
 		}
 	}
 

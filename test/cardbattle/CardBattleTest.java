@@ -1,5 +1,7 @@
 package cardbattle;
 
+import static cardbattle.CharacterTemplate.AYLLAN;
+import static cardbattle.CharacterTemplate.LASH;
 import static cardbattle.Skill.ATTACK;
 import static cardbattle.Skill.ATTACK_D_SPEED;
 import static cardbattle.Skill.ATTACK_E_SPEED;
@@ -7,6 +9,7 @@ import static cardbattle.Skill.ATTACK_QUICK;
 import static cardbattle.Skill.ATTACK_SLOW;
 import static cardbattle.Skill.HEAVY_SLASH;
 import static cardbattle.Skill.METEOR;
+import static cardbattle.Skill.MIND_BLAST;
 //import static cardbattle.Skill.SKILL_FIREBALL;
 import static cardbattle.Skill.SLASH;
 import static cardbattle.Skill.TRIPLE_SLASH;
@@ -15,6 +18,8 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
+
+import exceptions.InvalidSkillException;
 
 public class CardBattleTest {
 
@@ -309,5 +314,32 @@ public class CardBattleTest {
 		b.endTurn();
 		assertThat(b.hp(1), is(30));
 		assertThat(b.hp(2), is(30 - METEOR.damage));
+	}
+
+	@Test
+	public void testCharacterSkillsValid() {
+		CardBattle b = new CardBattle(LASH, AYLLAN);
+		b.setSkill(1, SLASH);
+		b.setSkill(2, MIND_BLAST);
+		b.endTurn();
+		assertThat(b.hp(1), is(LASH.hp - MIND_BLAST.damage));
+		assertThat(b.hp(2), is(AYLLAN.hp - SLASH.damage));
+	}
+
+	@Test
+	public void testCharacterSkillsInvalid() {
+		CardBattle b = new CardBattle(LASH, AYLLAN);
+		try {
+			b.setSkill(1, SLASH);
+			org.junit.Assert.fail("Expected InvalidSkillException");
+		} catch (InvalidSkillException e) {
+			// ok
+		}
+		try {
+			b.setSkill(2, MIND_BLAST);
+			org.junit.Assert.fail("Expected InvalidSkillException");
+		} catch (InvalidSkillException e) {
+			// ok
+		}		
 	}
 }

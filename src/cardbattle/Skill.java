@@ -24,7 +24,9 @@ public enum Skill {
 
 	METEOR(0, Speed.B, DELAYED_EFFECT_2),
 
-	NONE(0, Speed.E);
+	NONE(0, Speed.E),
+	MIND_BLAST(3, Speed.B),
+	FIREWALL(6, Speed.B);
 
 	public final Integer damage;
 	public final Integer speed;

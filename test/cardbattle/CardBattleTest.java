@@ -130,7 +130,7 @@ public class CardBattleTest {
 	}
 
 	@Test
-	public void testSlashHeavySlash() {
+	public void testSlashHeavySlashHeavySlash() {
 		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, SLASH);
 		b.endTurn();
@@ -141,20 +141,29 @@ public class CardBattleTest {
 		b.endTurn();
 		assertThat(b.hp(1), is(calcLife(DUMMY)));
 		assertThat(b.hp(2), is(calcLife(DUMMY, SLASH, HEAVY_SLASH)));
+		b.setSkill(1, HEAVY_SLASH);
+		b.setSkill(2, SLASH); // Mesma velocidade, pq Knockdown
+		b.endTurn();
+		assertThat(b.hp(1), is(calcLife(DUMMY, SLASH)));
+		assertThat(b.hp(2), is(calcLife(DUMMY, SLASH, HEAVY_SLASH, HEAVY_SLASH)));
 		assertThat(b.winner(), nullValue());
 	}
 
 	@Test
-	public void testHeavySlashKnockdownDraw() {
+	public void testHeavySlashKnockdownDrawDraw() {
 		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, HEAVY_SLASH);
 		b.endTurn();
-		b.setSkill(1, HEAVY_SLASH);
+		b.setSkill(1, TRIPLE_SLASH);
+		b.setSkill(2, ATTACK_QUICK);
+		b.endTurn();
+		assertThat(b.hp(1), is(calcLife(DUMMY, ATTACK_QUICK)));
+		assertThat(b.hp(2), is(calcLife(DUMMY, HEAVY_SLASH, TRIPLE_SLASH)));
+		b.setSkill(1, ATTACK);
 		b.setSkill(2, ATTACK);
 		b.endTurn();
-		assertThat(b.hp(1), is(calcLife(DUMMY, ATTACK)));
-		assertThat(b.hp(2), is(calcLife(DUMMY, HEAVY_SLASH, HEAVY_SLASH)));
-		assertThat(b.winner(), nullValue());
+		assertThat(b.hp(1), is(calcLife(DUMMY, ATTACK_QUICK, ATTACK)));
+		assertThat(b.hp(2), is(calcLife(DUMMY, HEAVY_SLASH, TRIPLE_SLASH, ATTACK)));
 	}
 
 	@Test

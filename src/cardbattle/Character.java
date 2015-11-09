@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import cardbattle.exceptions.InvalidSkillException;
+
 public class Character {
 
 	int skillDamage = 0;
@@ -23,9 +25,9 @@ public class Character {
 		hp = 30;
 	}
 
-	public Character(CharacterTemplate character) {
-		hp = character.hp;
-		skills.addAll(Arrays.asList(character.skills));
+	public Character(CharacterTemplateInterface character) {
+		hp = character.getHP();
+		skills.addAll(Arrays.asList(character.getSkills()));
 	}
 
 	public void clearSkill() {
@@ -38,7 +40,10 @@ public class Character {
 		return skill;
 	}
 
-	public void setSkill(Skill skill) {
+	public void setSkill(Skill skill) throws InvalidSkillException {
+		if (!skills.contains(skill)) {
+			throw new InvalidSkillException();
+		}
 		this.skill = skill;
 		skillDamage = skill.damage;
 		skillSpeed = skill.speed;

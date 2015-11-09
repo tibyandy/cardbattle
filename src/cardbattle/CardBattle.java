@@ -1,22 +1,13 @@
 package cardbattle;
 
-import exceptions.InvalidSkillException;
+import cardbattle.exceptions.InvalidSkillException;
 
 public class CardBattle {
 
 	private Character[] ch = new Character[2];
 	private SkillEvaluator skillEvaluator = new SkillEvaluator();
 
-	/**
-	 * Apenas para testes sem personagens.
-	 */
-	public CardBattle() {
-		for (int i = 0; i < 2; i++) {
-			ch[i] = new Character();
-		}
-	}
-
-	public CardBattle(CharacterTemplate... characters) {
+	public CardBattle(CharacterTemplateInterface... characters) {
 		for (int i = 0; i < 2; i++) {
 			ch[i] = new Character(characters[i]);
 		}

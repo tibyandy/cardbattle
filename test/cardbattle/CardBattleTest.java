@@ -19,13 +19,15 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import exceptions.InvalidSkillException;
+import cardbattle.exceptions.InvalidSkillException;
 
 public class CardBattleTest {
 
+	private static final CharacterTemplateInterface DUMMY = new TestCharacterTemplate();  
+	
 	@Test
 	public void testSkill() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, ATTACK_QUICK);
 		b.endTurn();
 		assertThat(b.hp(2), is(25));
@@ -34,7 +36,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testSkill2() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(2, ATTACK);
 		b.endTurn();
 		assertThat(b.hp(1), is(20));
@@ -43,7 +45,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testBattleOver() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(2, ATTACK_QUICK);
 		b.endTurn();
 		b.setSkill(2, ATTACK);
@@ -55,7 +57,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testBattleOver2() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, ATTACK_SLOW);
 		b.endTurn();
 		b.setSkill(1, ATTACK_SLOW);
@@ -65,7 +67,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testBattleDraw() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(2, ATTACK_SLOW);
 		b.setSkill(1, ATTACK_SLOW);
 		b.endTurn();
@@ -77,7 +79,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testBattleSkillSpeed1() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, ATTACK_QUICK);
 		b.setSkill(2, ATTACK);
 		b.endTurn();
@@ -88,7 +90,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testBattleSkillSpeed2() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, ATTACK_SLOW);
 		b.setSkill(2, ATTACK);
 		b.endTurn();
@@ -99,13 +101,13 @@ public class CardBattleTest {
 
 	@Test
 	public void testBattleNotOver() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		assertThat(b.winner(), nullValue());
 	}
 	
 //	@Test
 	public void testProjectile2Vs1() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, ATTACK);
 //		b.setSkill(2, SKILL_FIREBALL);
 		b.endTurn();
@@ -116,7 +118,7 @@ public class CardBattleTest {
 
 //	@Test
 	public void testProjectile1Vs2() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(2, ATTACK);
 //		b.setSkill(1, SKILL_FIREBALL);
 		b.endTurn();
@@ -127,7 +129,7 @@ public class CardBattleTest {
 
 //	@Test
 	public void testProjectile3() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(2, ATTACK_QUICK);
 //		b.setSkill(1, SKILL_FIREBALL);
 		b.endTurn();
@@ -138,7 +140,7 @@ public class CardBattleTest {
 
 //	@Test
 	public void testProjectiles() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 //		b.setSkill(2, SKILL_FIREBALL);
 //		b.setSkill(1, SKILL_FIREBALL);
 		b.endTurn();
@@ -149,7 +151,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testSlashSlash() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, SLASH);
 		b.setSkill(2, ATTACK);
 		b.endTurn();
@@ -165,7 +167,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testSlashHeavySlash() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, SLASH);
 		b.endTurn();
 		assertThat(b.hp(1), is(30));
@@ -180,7 +182,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testHeavySlashKnockdownDraw() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, HEAVY_SLASH);
 		b.endTurn();
 		b.setSkill(1, HEAVY_SLASH);
@@ -193,7 +195,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testHeavySlashKnockdownWin() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, HEAVY_SLASH);
 		b.endTurn();
 		b.setSkill(1, HEAVY_SLASH);
@@ -206,7 +208,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testHeavySlashVsHeavySlash() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, HEAVY_SLASH);
 		b.setSkill(2, HEAVY_SLASH);
 		b.endTurn();
@@ -222,7 +224,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testHeavySlashUnsuccessfull() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, HEAVY_SLASH);
 		b.setSkill(2, ATTACK_QUICK);
 		b.endTurn();
@@ -238,7 +240,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testSlashUnsuccessfull() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, SLASH);
 		b.setSkill(2, ATTACK_QUICK);
 		b.endTurn();
@@ -253,7 +255,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testSlashTripleSlash() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, SLASH);
 		b.setSkill(2, ATTACK_SLOW);
 		b.endTurn();
@@ -268,7 +270,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testMeteorSlash() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, METEOR);
 		b.setSkill(2, SLASH);
 		b.endTurn();
@@ -278,7 +280,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testMeteorHeavySlash() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, METEOR);
 		b.setSkill(2, HEAVY_SLASH);
 		b.endTurn();
@@ -288,7 +290,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testMeteorQuickAttack() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, METEOR);
 		b.setSkill(2, ATTACK_QUICK);
 		b.endTurn();
@@ -298,7 +300,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testMeteorAttackDSpeed() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, METEOR);
 		b.setSkill(2, ATTACK_D_SPEED);
 		b.endTurn();
@@ -308,7 +310,7 @@ public class CardBattleTest {
 
 	@Test
 	public void testMeteorAttackESpeed() {
-		CardBattle b = new CardBattle();
+		CardBattle b = new CardBattle(DUMMY, DUMMY);
 		b.setSkill(1, METEOR);
 		b.setSkill(2, ATTACK_E_SPEED);
 		b.endTurn();
@@ -322,21 +324,21 @@ public class CardBattleTest {
 		b.setSkill(1, SLASH);
 		b.setSkill(2, MIND_BLAST);
 		b.endTurn();
-		assertThat(b.hp(1), is(LASH.hp - MIND_BLAST.damage));
-		assertThat(b.hp(2), is(AYLLAN.hp - SLASH.damage));
+		assertThat(b.hp(1), is(LASH.getHP() - MIND_BLAST.damage));
+		assertThat(b.hp(2), is(AYLLAN.getHP() - SLASH.damage));
 	}
 
 	@Test
 	public void testCharacterSkillsInvalid() {
 		CardBattle b = new CardBattle(LASH, AYLLAN);
 		try {
-			b.setSkill(1, SLASH);
+			b.setSkill(1, MIND_BLAST);
 			org.junit.Assert.fail("Expected InvalidSkillException");
 		} catch (InvalidSkillException e) {
 			// ok
 		}
 		try {
-			b.setSkill(2, MIND_BLAST);
+			b.setSkill(2, SLASH);
 			org.junit.Assert.fail("Expected InvalidSkillException");
 		} catch (InvalidSkillException e) {
 			// ok

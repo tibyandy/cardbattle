@@ -18,12 +18,15 @@ public class CardBattleServlet extends HttpServlet {
 		String reqString = req.getQueryString();
 		String[] args;
 		if (reqString != null) {
-			args = java.net.URLDecoder.decode(reqString, "UTF-8").split(" ");
+			reqString = java.net.URLDecoder.decode(reqString, "UTF-8");
+			args = reqString.split(" ");
 		} else {
+			reqString = "Welcome to the CardBattle Server";
 			args = new String[0];
 		}
 		String reply = Services.process(args);
 		PrintWriter out = resp.getWriter();
+		out.println(reqString);
 		out.println(reply);
 	}
 }

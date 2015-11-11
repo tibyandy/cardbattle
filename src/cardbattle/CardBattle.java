@@ -1,6 +1,8 @@
 package cardbattle;
 
-import cardbattle.exceptions.InvalidSkillException;
+import static cardbattle.exceptions.CardBattleException.INVALID_CHARACTER_ID;
+import static cardbattle.exceptions.CardBattleException.error;
+import cardbattle.exceptions.CardBattleException;
 
 public class CardBattle {
 
@@ -19,12 +21,17 @@ public class CardBattle {
 		}
 	}
 
-	public void setSkill(int i, Skill skill) throws InvalidSkillException {
-		ch[i - 1].setSkill(skill);
+	public void setSkill(int i, Skill skill) throws CardBattleException {
+		if (i == 1 || i == 2) {
+			ch[i - 1].setSkill(skill);
+		} else {
+			throw error(INVALID_CHARACTER_ID, i);
+		}
 	}
 
-	public void endTurn() {
+	public CardBattle endTurn() {
 		skillEvaluator.evaluateSkills(ch);
+		return this;
 	}
 
 	public int hp(int i) {

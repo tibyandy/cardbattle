@@ -1,7 +1,12 @@
 package cardbattle;
 
+import static cardbattle.exceptions.CardBattleException.INVALID_BATTLE_ID;
+import static cardbattle.exceptions.CardBattleException.error;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import cardbattle.exceptions.CardBattleException;
 
 public class BattleManager {
 
@@ -18,7 +23,11 @@ public class BattleManager {
 		return battle; 
 	}
 
-	public static CardBattle getBattle(int battleId) {
-		return battles.get(battleId - 1); 
+	public static CardBattle getBattle(int battleId) throws CardBattleException {
+		try {
+			return battles.get(battleId - 1);
+		} catch (IndexOutOfBoundsException e) {
+			throw error(INVALID_BATTLE_ID, battleId);
+		}
 	}
 }

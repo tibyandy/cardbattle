@@ -1,12 +1,16 @@
 package cardbattle;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import cardbattle.exceptions.CardBattleException;
 
 public class BattleManagerTest {
 
@@ -23,7 +27,7 @@ public class BattleManagerTest {
 	}
 
 	@Test
-	public void testGetBattles() {
+	public void testGetBattles() throws CardBattleException {
 		CardBattle battle1 = BattleManager.createBattle(CharacterTemplate.LASH, CharacterTemplate.AYLLAN);
 		CardBattle battle2 = BattleManager.createBattle(CharacterTemplate.LASH, CharacterTemplate.AYLLAN);
 		assertThat(battle1, equalTo(BattleManager.getBattle(1)));
@@ -31,7 +35,7 @@ public class BattleManagerTest {
 	}
 
 	@Test
-	public void testGetInvalidBattle() {
+	public void testGetInvalidBattle() throws CardBattleException {
 		assertBattleNotExists(0);
 		assertBattleNotExists(1);
 
@@ -44,9 +48,9 @@ public class BattleManagerTest {
 	private void assertBattleNotExists(int battleId) {
 		try {
 			BattleManager.getBattle(battleId);
-			Assert.fail("Expected IndexOutOfBoundsException");
-		} catch (IndexOutOfBoundsException e) {
-			// ok
+			fail("Expected CardBattleException");
+		} catch (CardBattleException e) {
+			assertThat(e.error(), is(CardBattleException.INVALID_BATTLE_ID));
 		}
 	}
 }

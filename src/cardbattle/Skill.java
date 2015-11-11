@@ -1,10 +1,16 @@
 package cardbattle;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import static cardbattle.Property.DELAYED_EFFECT_2;
 import static cardbattle.Property.SLASH_BOOSTED;
+import static cardbattle.exceptions.CardBattleException.INVALID_SKILL_NAME;
+import static cardbattle.exceptions.CardBattleException.error;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import cardbattle.exceptions.CardBattleException;
 
 public enum Skill {
 
@@ -31,8 +37,11 @@ public enum Skill {
 	public final Integer damage;
 	public final Integer speed;
 	public final Integer effectDelay;
+
 	private final Set<Property> properties;
 
+	private static final Map<String, Skill> SKILLS_BY_NAME = new HashMap<>(); 
+	
 	private Skill(Integer damage, Speed speed, Property... properties) {
 		this.damage = damage;
 		this.speed = speed.n;
@@ -53,5 +62,19 @@ public enum Skill {
 
 	public boolean has(Property property) {
 		return properties.contains(property);
+	}
+
+	public static Skill get(String s) throws CardBattleException {
+		if (SKILLS_BY_NAME.isEmpty()) {
+			for (Skill skill : Skill.values()) {
+				SKILLS_BY_NAME.put(skill.toString(), skill);
+			}
+		}
+		String skillName = s.toUpperCase();
+		Skill skill = SKILLS_BY_NAME.get(skillName);
+		if (skill == null) {
+			throw error(INVALID_SKILL_NAME, skillName);
+		}
+		return skill;
 	}
 }

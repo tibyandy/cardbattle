@@ -17,6 +17,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import cardbattle.exceptions.InvalidSkillException;
@@ -336,5 +337,19 @@ public class CardBattleTest {
 		b.endTurn();
 		assertThat(b.hp(1), is(calcLife(LASH, MIND_BLAST)));
 		assertThat(b.hp(2), is(calcLife(AYLLAN, SLASH)));
+	}
+
+	@Test
+	public void testCardBattleId() {
+		CardBattle b1 = new CardBattle(1, DUMMY, DUMMY);
+		CardBattle b2 = new CardBattle(2, DUMMY, DUMMY);
+		assertThat(b1, CoreMatchers.not(CoreMatchers.equalTo(b2)));
+		assertThat(b1, CoreMatchers.equalTo(b1));
+
+		CardBattle b01 = new CardBattle(DUMMY, DUMMY);
+		CardBattle b02 = new CardBattle(DUMMY, DUMMY);
+		assertThat(b01, CoreMatchers.equalTo(b01));
+		assertThat(b02, CoreMatchers.equalTo(b02));
+		assertThat(b01, CoreMatchers.not(CoreMatchers.equalTo(b02)));
 	}
 }

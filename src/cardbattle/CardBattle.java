@@ -6,8 +6,14 @@ public class CardBattle {
 
 	private Character[] ch = new Character[2];
 	private SkillEvaluator skillEvaluator = new SkillEvaluator();
+	public final int id;
 
 	public CardBattle(CharacterTemplateInterface... characters) {
+		this(0, characters);
+	}
+
+	public CardBattle(int id, CharacterTemplateInterface... characters) {
+		this.id = id;
 		for (int i = 0; i < 2; i++) {
 			ch[i] = new Character(characters[i]);
 		}
@@ -37,5 +43,23 @@ public class CardBattle {
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		try {
+			if (this.id != 0) {
+				return ((CardBattle) obj).id == this.id;
+			} else {
+				return this == ((CardBattle) obj);
+			}
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "CardBattle[" + id + "]";
 	}
 }

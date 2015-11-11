@@ -32,19 +32,19 @@ Esses passos são opcionais para tornar a URL privada do seu servlet pública.
 Essas configurações são para um roteador TP-Link.
 
 1. Entre na configuração do seu roteador (ex: http://192.168.1.1)
-2. Mapeie o IP da sua máquina na rede como estático, e não dinâmico
+2. Copie o endereço MAC da placa de rede do seu PC. (Basic Settings > Network > MAC Clone)
+3. Mapeie o IP da sua máquina na rede como estático, e não dinâmico
     1. Advanced Settings > IP & MAC Binding
     2. Add New...
         1. Bind: OK
-        2. MAC Address: endereço MAC do seu PC, ex: AB-CD-12-34-56-78
-  (Você pode ver o endereço em Basic Settings > Network > MAC Clone.)
+        2. MAC Address: endereço MAC da placa de rede seu PC, ex: AB-CD-12-34-56-78
         3. IP Address: algum IP fixo na sua rede, ex: 192.168.1.**199**
         4. Save
-3. Desconecte seu PC da sua rede wifi e reconecte.
-4. Verifique se seu PC está com o IP designado com IPCONFIG:
-5. Eclipse: Right-click no projeto "CardBattle" > Run As > Run with Jetty
-6. No seu navegador, acesse a URL: http://**192.168.1.199**:666/CardBattle
-7. Deverá aparecer "CardBattle Server is running" seguido da data e hora do servidor.
+4. Desconecte seu PC da sua rede (Wifi ou não) e reconecte.
+5. Verifique se seu PC está com o IP designado com IPCONFIG:
+6. Eclipse: Right-click no projeto "CardBattle" > Run As > Run with Jetty
+7. No seu navegador, acesse a URL: http://**192.168.1.199**:666/CardBattle
+8. Deverá aparecer "CardBattle Server is running" seguido da data e hora do servidor.
 
  
 ### 3.2. Configurando Port Redirect

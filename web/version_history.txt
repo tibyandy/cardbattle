@@ -1,0 +1,44 @@
+CARD BATTLE - HISTÓRICO DE VERSÕES
+
+==============================
+
+Versão 0.2.DEV - ASYNC SERVLET
+Início: 12/nov/2015
+
+12/nov/2015
+- Preparo do código para Async Servlet.
+
+13/nov/2015
+- Aprimoramento da interface HTML para o Servlet.
+- Criação do version_history.txt.
+
+Futuro
+- Criação do conceito "Server Uptime" e serviço "uptime"
+- Criação do serviço "syncStatus [lastSyncUptime]"
+
+==============================
+
+Versão 0.1 - SERVLET
+Início: 11/nov/2015
+
+  Criação do BattleManager.
+  Criação do Servlet.
+  Criação do Services.
+  Criação do HTML de acesso ao Servlet.
+  Criação do readme.md.
+  Primeira execução de Servlet com sucesso. 
+
+==============================
+
+Versão 0.0 - BASE DO CÓDIGO
+Início: 05/nov/2015
+
+  Primeira versão disponível no GitHub.
+  Criação do core do CardBattle com testes unitários.
+  Separada a avaliação de Skills em uma classe a parte.
+  Implementação do conceito de CharacterTemplate com conjunto de skills.
+  Criadas todas as skills do Lash e do Ayllan.
+  Skills do Ayllan ainda não estão definitivas, mas estão funcionais. 
+
+==============================
+  

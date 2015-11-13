@@ -1,0 +1,135 @@
+* {
+	box-sizing: border-box;
+}
+html, body, #view {
+	width: 100%;
+	margin: 0;
+	background: #CFD8DC /* Blue Grey 100 */;
+}
+html {
+	height: 100%;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	height: 100%;
+}
+#view {
+	display: flex;
+	align-items: stretch;
+	padding: 2px;
+	flex-grow: 1;
+}
+#view > section {
+	margin: 4px;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.25), 0 2px 5px rgba(0,0,0,0.25);
+	padding: 0 0 5px;
+}
+#view section {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+#view > section {
+	background: #fff;
+}
+#view > section > section {
+	margin: 10px 10px 5px;
+	background: #fff;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.25), 0 2px 5px rgba(0,0,0,0.25);
+}
+#output, #push_reply, #push_result, #available_commands {
+	flex-grow: 1;
+}
+#push_result {
+	margin: -10px 0 0;
+	padding: 10px;
+	border: none;
+    resize: none;
+}
+h2, h3 {
+	line-height: 20px;
+	height: 27px;
+}
+body > header, h1, h2, h3, ul, #battle_status, input, textarea, iframe {
+	font-family: sans-serif;
+	color: rgba(0,0,0,0.87);
+}
+#preset_commands {
+	overflow-y: auto;
+}
+ul {
+	font-size: 12px;
+	list-style-type: none;
+	padding: 0;
+	margin-bottom: 10px;
+}
+ul li {
+	line-height: 18px;
+}
+section > ul {
+	margin: 0 10px;
+}
+h2, h3 {
+	padding: 4px;
+}
+header {
+	background: #37474F; /* Blue Grey 800 */ 
+	display: flex;
+	padding: 0 5px;
+}
+h1 {
+	color: rgba(255,255,255,1);
+}
+h1, header a {
+	margin: 0;
+	line-height: 32px;
+	font-weight: normal;
+	padding-right: 15px;
+}
+header a {
+	color: rgba(255,255,255,0.7);
+	font-size: 11.5px;
+	text-decoration: none;
+}
+header a:hover {
+	color: rgba(255,255,255,1);
+	text-decoration: underline;
+}
+h1 {
+	font-size: 16px;
+	flex-grow: 1;
+}
+h2 {
+	color: rgba(255,255,255,1);
+	background: #546E7A; /* Blue Grey 600 */
+	margin: 0;
+	font-size: 14.5px;
+	font-weight: normal;
+}
+h3 {
+	margin: 0 0 10px;
+	background: #ECEFF1; /* Blue Grey 50 */
+	font-weight: normal;
+	font-size: 13px;
+	color: #000;
+}
+iframe {
+	border: none;
+	margin: -10px 0 0;
+	height: 100px;
+}
+input {
+	margin: -5px 5px 5px;
+	padding: 1px 2px;
+}
+#battle_status {
+	margin: -5px 5px 5px;
+	font-size: 13px;
+	padding: 5px;
+	height: 100px;
+}
+#battle_status, textarea {
+	color: rgba(0,0,0,0.54);
+}

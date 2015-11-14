@@ -1,6 +1,8 @@
 package cardbattle.server;
 
 import static cardbattle.BattleManager.getBattle;
+import static cardbattle.server.ServiceResponse.response;
+import static cardbattle.server.ServiceResponse.syncResponse;
 import static java.lang.String.format;
 import cardbattle.BattleManager;
 import cardbattle.BattleStatus;
@@ -11,42 +13,42 @@ import cardbattle.exceptions.CardBattleException;
 
 public class Services {
 
-	public static String process(String[] args) {
+	public static ServiceResponse process(String[] args) {
 		if (args == null || args.length == 0) {
-			return "";
+			return response("");
 		}
-		String msg;
+		ServiceResponse response;
 		try {
-			msg = runServiceMethod(args);
+			response = runServiceMethod(args);
 		} catch (CardBattleException e) {
-			msg = format("ERROR\n%s", e.getMessage());
+			response = response(format("ERROR\n%s", e.getMessage()));
 		}
-		if (msg == null) {
-			msg = format("ERROR\nUnknown method name %s with %d arguments", args[0], args.length - 1);
+		if (response == null) {
+			response = response(format("ERROR\nUnknown method name %s with %d arguments", args[0], args.length - 1));
 		}
-		return msg;
+		return response;
 	}
 
-	private static String runServiceMethod(String[] x) throws CardBattleException {
+	private static ServiceResponse runServiceMethod(String[] x) throws CardBattleException {
 		String methodName = x[0];
 		switch (x.length) {
 		case 4:
 			switch (methodName) {
-			case "setSkill": return setSkill(i(x[1]), i(x[2]), x[3]);
+			case "setSkill": return syncResponse(setSkill(i(x[1]), i(x[2]), x[3]));
 			}
 		case 3:
 			switch (methodName) {
-			case "createBattle": return createBattle(x[1], x[2]);
+			case "createBattle": return syncResponse(createBattle(x[1], x[2]));
 			}
 		case 2:
 			switch (methodName) {
-			case "endTurn": return endTurn(i(x[1]));
-			case "status": return status(i(x[1]), l(x[2]));
+			case "endTurn": return syncResponse(endTurn(i(x[1])));
+			case "status": return response(status(i(x[1]), l(x[2])));
 			}
 		case 1:
 			switch (methodName) {
-			case "resetServer": return resetServer();
-			case "uptime": return uptime();
+			case "resetServer": return syncResponse(resetServer());
+			case "uptime": return response(uptime());
 			}
 		}
 		return null;

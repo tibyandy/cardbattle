@@ -20,7 +20,7 @@ public class CardBattle {
 		for (int i = 0; i < 2; i++) {
 			ch[i] = new Character(characters[i]);
 		}
-		battleStatus = new BattleStatus(ch);
+		battleStatus = new BattleStatus(BattleEvent.Battle_Created, ch);
 	}
 
 	public void setSkill(int i, Skill skill) throws CardBattleException {
@@ -29,12 +29,13 @@ public class CardBattle {
 		} else {
 			throw error(INVALID_CHARACTER_ID, i);
 		}
-		battleStatus = new BattleStatus(ch);
+		BattleEvent event = i == 1 ? BattleEvent.Skill_Set_1 : BattleEvent.Skill_Set_2;
+		battleStatus = new BattleStatus(event, ch);
 	}
 
 	public CardBattle endTurn() {
 		skillEvaluator.evaluateSkills(ch);
-		battleStatus = new BattleStatus(ch);
+		battleStatus = new BattleStatus(BattleEvent.End_Turn, ch);
 		return this;
 	}
 

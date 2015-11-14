@@ -2,17 +2,21 @@ CARD BATTLE - HISTÓRICO DE VERSÕES
 
 ==============================
 
-Versão 0.2.DEV - ASYNC SERVLET
+Versão 0.2 - ASYNC SERVLET
 Início: 12/nov/2015
+Liberação: 14/nov/2015
 
-12/nov/2015
-- Preparo do código para Async Servlet.
-
-13/nov/2015
 - Aprimoramento da interface HTML para o Servlet.
 - Criação do version_history.txt.
 - Criação do conceito "BattleManager Uptime" e serviço "uptime"
 - Criação do serviço "status [battleId] [sinceTime]"
+- Primeira versão do Async Servlet.
+
+Roadmap Versão 0.2.1
+
+- Melhoria do código do Servlet / documentação interna.
+- Não pegar atualizações de outras batalhas sem ser a sua.
+- Criar tratamento de interrupção de autoupdate ("Stop").
 
 ==============================
 

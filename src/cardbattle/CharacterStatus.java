@@ -24,7 +24,7 @@ public class CharacterStatus {
 		s.append(name).append('=').append(hp);
 		if (knockedDown) { s.append(" [KnockedDown]"); }
 		if (slashing) { s.append(" [Slashing]"); }
-		if (skillSelected) { s.append(" (").append(skillSetTime).append(")"); }
+		if (skillSelected) { s.append(" (SkillSet@").append(skillSetTime).append(")"); }
 		return s.toString();
 	}
 }

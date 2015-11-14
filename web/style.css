@@ -55,12 +55,6 @@ section > div {
 #output, #push_reply, #push_result, #available_commands {
 	flex-grow: 1;
 }
-#push_result {
-	margin: -10px 0 0;
-	padding: 10px;
-	border: none;
-    resize: none;
-}
 h2, h3 {
 	line-height: 20px;
 	height: 27px;
@@ -144,9 +138,39 @@ input {
 	font-family: monospace;
 	white-space: pre;
 }
+
+@keyframes changed {
+    0%   {color: #000;}
+    5%   {color: #f00;}
+    100% {color: rgba(0,0,0,0.87);}
+}
+
+#battle_status.changed {
+	color: #f00;
+    animation-name: changed;
+    animation-duration: 3s;	
+}
 textarea {
 	color: rgba(0,0,0,0.54);
 }
 input {
 	margin-bottom: 10px;
+}
+#push_reply ul {
+	display: flex;
+	margin: 0;
+}
+#push_reply ul li {
+	padding: 0 10px;
+	margin: 0;
+}
+#push_result {
+	margin: 0;
+	padding: 10px;
+	border: none;
+    resize: none;
+}
+
+.unimplemented {
+	display: none !important;
 }

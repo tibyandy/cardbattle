@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-	<h1>Card Battle Ver 0.2.dev</h1>
+	<h1>Card Battle Ver 0.2</h1>
 	<a target="_top" href="version_history.txt">Version history</a>
 	<a target="_top" href="https://github.com/tibyandy/cardbattle">GitHub</a>
 </header>
@@ -50,7 +50,7 @@
 					</ul></li>
 				</ul>
 			</section>
-			<section id="send_command">
+			<section id="send_command" class="unimplemented">
 				<h3>Send command to server</h3>
 				<input id="command" placeholder="Not yet implemented" autofocus="autofocus" readonly="readonly" />
 				<ul>
@@ -72,11 +72,22 @@
 			</section>
 			<section>
 				<h3>Battle status</h3>
-				<div id="battle_status">This panel is updated after selecting a preset command by invoking the "status [battleId] 0" command to the server.</div>
+				<div id="battle_status">This panel is updated automatically
+when autoupdate is on.</div>
 			</section>
 			<section id="push_reply">
-				<h3>Server ping callback</h3>
-				<textarea id="push_result">Not yet implemented. Here will be shown server-pushed notifications, such as character status updates.</textarea>
+				<h3>Battle log
+					<span id="polling">(running)</span>
+					<span id="stop">(stopped)</span>
+				</h3>
+				<div>
+					<ul>
+						<li><a id="poll1" href="#" target="_self">Battle 1</a></li>
+						<li><a id="poll2" href="#" target="_self">Battle 2</a></li>
+						<li><a id="poll0" href="#" target="_self">Stop</a></li>
+					</ul>
+					<textarea id="push_result">Select a battle to log server autoupdates.</textarea>
+				</div>
 			</section>
 		</div>
 	</section>

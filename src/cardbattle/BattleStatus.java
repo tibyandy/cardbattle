@@ -4,8 +4,10 @@ public class BattleStatus {
 
 	private final CharacterStatus[] characterStatus = new CharacterStatus[2];
 	private long time;
+	private String event;
 	
-	public BattleStatus(Character[] ch) {
+	public BattleStatus(BattleEvent event, Character[] ch) {
+		this.event = event.toString();
 		this.time = BattleManager.getUptime();
 		characterStatus[0] = new CharacterStatus(ch[0]);
 		characterStatus[1] = new CharacterStatus(ch[1]);
@@ -14,7 +16,7 @@ public class BattleStatus {
 	@Override
 	public String toString() {
 		StringBuilder s = new StringBuilder();
-		s.append(time).append('\n');
+		s.append(time).append('\n').append(event).append('\n');
 		s.append(characterStatus[0]);
 		s.append('\n');
 		s.append(characterStatus[1]);

@@ -7,4 +7,9 @@ public class TestCharacterTemplate implements CharacterTemplateInterface {
 	public Skill[] getSkills() {
 		return Skill.values();
 	}
+
+	@Override
+	public String toString() {
+		return "DUMMY_CHARACTER";
+	}
 }

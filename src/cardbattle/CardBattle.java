@@ -9,6 +9,7 @@ public class CardBattle {
 	private Character[] ch = new Character[2];
 	private SkillEvaluator skillEvaluator = new SkillEvaluator();
 	public final int id;
+	private BattleStatus battleStatus;
 
 	public CardBattle(CharacterTemplateInterface... characters) {
 		this(0, characters);
@@ -19,6 +20,7 @@ public class CardBattle {
 		for (int i = 0; i < 2; i++) {
 			ch[i] = new Character(characters[i]);
 		}
+		battleStatus = new BattleStatus(ch);
 	}
 
 	public void setSkill(int i, Skill skill) throws CardBattleException {
@@ -27,10 +29,12 @@ public class CardBattle {
 		} else {
 			throw error(INVALID_CHARACTER_ID, i);
 		}
+		battleStatus = new BattleStatus(ch);
 	}
 
 	public CardBattle endTurn() {
 		skillEvaluator.evaluateSkills(ch);
+		battleStatus = new BattleStatus(ch);
 		return this;
 	}
 
@@ -68,5 +72,12 @@ public class CardBattle {
 	@Override
 	public String toString() {
 		return "CardBattle[" + id + "]";
+	}
+
+	public BattleStatus getBattleStatus(long lastSyncTime) {
+		if (battleStatus != null && lastSyncTime < battleStatus.getTime()) {
+			return battleStatus;
+		}
+		return null;
 	}
 }

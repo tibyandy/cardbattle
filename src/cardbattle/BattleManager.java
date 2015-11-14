@@ -4,6 +4,7 @@ import static cardbattle.exceptions.CardBattleException.INVALID_BATTLE_ID;
 import static cardbattle.exceptions.CardBattleException.error;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import cardbattle.exceptions.CardBattleException;
@@ -12,6 +13,8 @@ public class BattleManager {
 
 	private static List<CardBattle> battles = new ArrayList<>();
 
+	private static final long STARTUP_TIME = new Date().getTime();
+	
 	public static void reset() {
 		System.out.println("BattleManager restarting...");
 		battles = new ArrayList<>();
@@ -29,5 +32,9 @@ public class BattleManager {
 		} catch (IndexOutOfBoundsException e) {
 			throw error(INVALID_BATTLE_ID, battleId);
 		}
+	}
+
+	public static long getUptime() {
+		return new Date().getTime() - STARTUP_TIME;
 	}
 }

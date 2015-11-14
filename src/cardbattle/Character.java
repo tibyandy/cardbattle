@@ -22,12 +22,16 @@ public class Character {
 
 	private Skill skill = Skill.NONE;
 	private final List<Skill> skills = new ArrayList<>();
+	private CharacterTemplateInterface template;
 
+	private long skillSetTime = 0;
+	
 	public Character() {
 		hp = 30;
 	}
 
 	public Character(CharacterTemplateInterface character) {
+		template = character;
 		hp = character.getHP();
 		skills.addAll(Arrays.asList(character.getSkills()));
 	}
@@ -56,6 +60,7 @@ public class Character {
 		if (knockedDown) {
 			skillSpeed--;
 		}
+		skillSetTime = BattleManager.getUptime();
 	}
 
 	public int getSkillSpeed() {
@@ -71,5 +76,13 @@ public class Character {
 	}
 	public void nullifySkillDamage() {
 		this.skillDamage = 0;
+	}
+
+	public String getName() {
+		return template.toString();
+	}
+
+	public long getSkillSetTime() {
+		return skillSetTime;
 	}
 }

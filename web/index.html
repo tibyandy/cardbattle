@@ -4,75 +4,81 @@
 	<title>CardBattle!</title>
 	<base target="output">
 	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 <header>
-	<h1>Card Battle Ver 0.1</h1>
+	<h1>Card Battle Ver 0.2.dev</h1>
 	<a target="_top" href="version_history.txt">Version history</a>
 	<a target="_top" href="https://github.com/tibyandy/cardbattle">GitHub</a>
 </header>
 <div id="view">
 	<section id="commands">
 		<h2>Command list</h2>
-		<section id="send_command">
-			<h3>Send command to server</h3>
-			<input id="command" placeholder="Not yet implemented" autofocus="autofocus" readonly="readonly" />
-		</section>
-		<section id="preset_commands">
-			<h3>Preset commands</h3>
-			<ul>
-				<li><ul>
-					<li><a href="CardBattle?resetServer">               resetServer</a></li>
-				</ul></li>
-				<li><ul>
-					<li><a href="CardBattle?createBattle lash ayllan">  createBattle lash ayllan</a></li>
-					<li><a href="CardBattle?setSkill 1 1 slash">        setSkill 1 1 slash</a></li>
-					<li><a href="CardBattle?setSkill 1 1 heavy_slash">  setSkill 1 1 heavy_slash</a></li>
-					<li><a href="CardBattle?setSkill 1 1 triple_slash"> setSkill 1 1 triple_slash</a></li>
-					<li><a href="CardBattle?setSkill 1 2 mind_blast">   setSkill 1 2 mind_blast</a></li>
-					<li><a href="CardBattle?setSkill 1 2 firewall">     setSkill 1 2 firewall</a></li>
-					<li><a href="CardBattle?setSkill 1 2 meteor">       setSkill 1 2 meteor</a></li>
-					<li><a href="CardBattle?endTurn 1">                 endTurn 1</a></li>
-				</ul></li>
-				<li><ul>
-					<li><a href="CardBattle?createBattle ayllan lash">  createBattle ayllan lash</a></li>
-					<li><a href="CardBattle?setSkill 2 1 mind_blast">   setSkill 2 1 mind_blast</a></li>
-					<li><a href="CardBattle?setSkill 2 1 firewall">     setSkill 2 1 firewall</a></li>
-					<li><a href="CardBattle?setSkill 2 1 meteor">       setSkill 2 1 meteor</a></li>
-					<li><a href="CardBattle?setSkill 2 2 slash">        setSkill 2 2 slash</a></li>
-					<li><a href="CardBattle?setSkill 2 2 heavy_slash">  setSkill 2 2 heavy_slash</a></li>
-					<li><a href="CardBattle?setSkill 2 2 triple_slash"> setSkill 2 2 triple_slash</a></li>
-					<li><a href="CardBattle?endTurn 2">                 endTurn 2</a></li>
-				</ul></li>
-			</ul>
-		</section>
-		<section id="available_commands">
-			<h3>Available commands</h3>
-			<ul>
-				<li>createBattle [char1name] [char2name]</li>
-				<li>setSkill [battleId] [charId] [skillName]</li>
-				<li>endTurn [battleId]</li>
-				<li>resetServer</li>
-			</ul>
-		</section>
+		<div>
+			<section id="preset_commands">
+				<h3>Preset commands</h3>
+				<ul>
+					<li><ul>
+						<li><a href="CardBattle?resetServer">               resetServer</a></li>
+					</ul></li>
+					<li><ul battleId="1">
+						<li><a href="CardBattle?createBattle lash ayllan">  createBattle lash ayllan</a></li>
+						<li><a href="CardBattle?setSkill 1 1 slash">        setSkill 1 1 slash</a></li>
+						<li><a href="CardBattle?setSkill 1 1 heavy_slash">  setSkill 1 1 heavy_slash</a></li>
+						<li><a href="CardBattle?setSkill 1 1 triple_slash"> setSkill 1 1 triple_slash</a></li>
+						<li><a href="CardBattle?setSkill 1 2 mind_blast">   setSkill 1 2 mind_blast</a></li>
+						<li><a href="CardBattle?setSkill 1 2 firewall">     setSkill 1 2 firewall</a></li>
+						<li><a href="CardBattle?setSkill 1 2 meteor">       setSkill 1 2 meteor</a></li>
+						<li><a href="CardBattle?endTurn 1">                 endTurn 1</a></li>
+						<li><a href="CardBattle?status 1 0">                status 1 0</a></li>
+					</ul></li>
+					<li><ul battleId="2">
+						<li><a href="CardBattle?createBattle ayllan lash">  createBattle ayllan lash</a></li>
+						<li><a href="CardBattle?setSkill 2 1 mind_blast">   setSkill 2 1 mind_blast</a></li>
+						<li><a href="CardBattle?setSkill 2 1 firewall">     setSkill 2 1 firewall</a></li>
+						<li><a href="CardBattle?setSkill 2 1 meteor">       setSkill 2 1 meteor</a></li>
+						<li><a href="CardBattle?setSkill 2 2 slash">        setSkill 2 2 slash</a></li>
+						<li><a href="CardBattle?setSkill 2 2 heavy_slash">  setSkill 2 2 heavy_slash</a></li>
+						<li><a href="CardBattle?setSkill 2 2 triple_slash"> setSkill 2 2 triple_slash</a></li>
+						<li><a href="CardBattle?endTurn 2">                 endTurn 2</a></li>
+						<li><a href="CardBattle?status 2 0">                status 2 0</a></li>
+					</ul></li>
+					<li><ul>
+						<li><a href="CardBattle?uptime">                    uptime</a></li>
+					</ul></li>
+				</ul>
+			</section>
+			<section id="send_command">
+				<h3>Send command to server</h3>
+				<input id="command" placeholder="Not yet implemented" autofocus="autofocus" readonly="readonly" />
+				<ul>
+					<li>createBattle [char1name] [char2name]</li>
+					<li>setSkill [battleId] [charId] [skillName]</li>
+					<li>endTurn [battleId]</li>
+					<li>resetServer</li>
+					<li>status [battleId] [sinceTime]</li>
+				</ul>
+			</section>
+		</div>
 	</section>
 	<section id="output">
 		<h2>User interface output</h2>
-		<section id="server_reply">
-			<h3>Server reply</h3>
-			<iframe src="CardBattle" name="output"></iframe>
-		</section>
-		<section>
-			<h3>Battle status</h3>
-			<div id="battle_status">
-				Not yet implemented. Here will be shown the battle characters information.
-			</div>
-		</section>
-		<section id="push_reply">
-			<h3>Server ping callback</h3>
-			<textarea id="push_result">Not yet implemented. Here will be shown server-pushed notifications, such as character status updates.</textarea>
-		</section>
+		<div>
+			<section id="server_reply">
+				<h3>Server reply</h3>
+				<iframe src="CardBattle" name="output"></iframe>
+			</section>
+			<section>
+				<h3>Battle status</h3>
+				<div id="battle_status">This panel is updated after selecting a preset command by invoking the "status [battleId] 0" command to the server.</div>
+			</section>
+			<section id="push_reply">
+				<h3>Server ping callback</h3>
+				<textarea id="push_result">Not yet implemented. Here will be shown server-pushed notifications, such as character status updates.</textarea>
+			</section>
+		</div>
 	</section>
 </div>
 </body>

@@ -1,3 +1,20 @@
+$(function () {
+	$('iframe').on('load', loadedFrame);
+
+	var _battleId = null;
+	function loadedFrame() {
+		if (_battleId != null) {
+			$.get('CardBattle?status ' + _battleId + ' 0', function (data) {
+				$('#battle_status').html(data);
+			});
+		}
+	}
+
+	var $battleStatus = $('#battle_status');
+	$('ul a').on('click', function () {
+		_battleId = $(this).closest('ul').attr('battleId');
+	});
+})
 /* TODO
 var messagesWaiting = false;
 

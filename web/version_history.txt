@@ -11,10 +11,8 @@ Início: 12/nov/2015
 13/nov/2015
 - Aprimoramento da interface HTML para o Servlet.
 - Criação do version_history.txt.
-
-Futuro
-- Criação do conceito "Server Uptime" e serviço "uptime"
-- Criação do serviço "syncStatus [lastSyncUptime]"
+- Criação do conceito "BattleManager Uptime" e serviço "uptime"
+- Criação do serviço "status [battleId] [sinceTime]"
 
 ==============================
 

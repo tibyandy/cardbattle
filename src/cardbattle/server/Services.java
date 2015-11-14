@@ -3,6 +3,7 @@ package cardbattle.server;
 import static cardbattle.BattleManager.getBattle;
 import static java.lang.String.format;
 import cardbattle.BattleManager;
+import cardbattle.BattleStatus;
 import cardbattle.CardBattle;
 import cardbattle.CharacterTemplate;
 import cardbattle.Skill;
@@ -40,13 +41,24 @@ public class Services {
 		case 2:
 			switch (methodName) {
 			case "endTurn": return endTurn(i(x[1]));
+			case "status": return status(i(x[1]), l(x[2]));
 			}
 		case 1:
 			switch (methodName) {
 			case "resetServer": return resetServer();
+			case "uptime": return uptime();
 			}
 		}
 		return null;
+	}
+
+	private static String status(int battleId, long lastSyncTime) throws CardBattleException {
+		BattleStatus battleStatus = getBattle(battleId).getBattleStatus(lastSyncTime);
+		return battleStatus == null ? "" : battleStatus.toString();
+	}
+
+	private static String uptime() {
+		return format("OK\nUpTime = %d", BattleManager.getUptime());
 	}
 
 	private static String resetServer() throws CardBattleException {
@@ -56,7 +68,7 @@ public class Services {
 
 	private static String endTurn(int battleId) throws CardBattleException {
 		CardBattle b = getBattle(battleId).endTurn();
-		return format("OK\nChara1HP = %d\nChara2HP = %d", b.hp(1), b.hp(2));
+		return "OK";
 	}
 
 	private static String setSkill(int battleId, int charNumber, String skillName) throws CardBattleException {
@@ -74,6 +86,14 @@ public class Services {
 	private static int i(String string) {
 		try {
 			return Integer.valueOf(string);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
+
+	private static long l(String string) {
+		try {
+			return Long.valueOf(string);
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException(e);
 		}

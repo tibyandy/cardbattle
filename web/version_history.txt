@@ -17,6 +17,12 @@ Roadmap Versão 0.2.1
 - Melhoria do código do Servlet / documentação interna.
 - Não pegar atualizações de outras batalhas sem ser a sua.
 - Criar tratamento de interrupção de autoupdate ("Stop").
+- Lidar com desconexões:
+  WARN:oejs.ServletHandler:/CardBattle
+  java.lang.IllegalStateException: IDLE,initial
+	at org.eclipse.jetty.server.AsyncContinuation.complete(AsyncContinuation.java:582)
+	at cardbattle.server.CardBattleServlet.updateAsyncConnections(CardBattleServlet.java:80)
+	at cardbattle.server.CardBattleServlet.doGet(CardBattleServlet.java:46)
 
 ==============================
 

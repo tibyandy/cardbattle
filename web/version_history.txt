@@ -1,84 +1,97 @@
-CARD BATTLE - HIST”RICO DE VERS’ES
+CARD BATTLE - HIST√ìRICO DE VERS√ïES
 
 ==============================
+VERS√ÉO ATUAL
 
-Vers„o 0.2.1 - REFACTORING
-InÌcio: 14/nov/2015
-LiberaÁ„o: 15/nov/2015
+Vers√£o 0.2.1 - REFACTORING
+In√≠cio: 14/nov/2015
+Libera√ß√£o: 15/nov/2015 (0.2.1 e 0.2.1b)
 
-- ReestruturaÁ„o interna do cÛdigo em pacotes:
+0.2.1b
+- Atualiza√ß√µes no README.md
+- Convers√£o do encoding do version_history.txt e do README.md para UTF-8
+- Inclus√£o do .gitignore
 
-  > web: Front-end. Requer Jetty ou algum servidor de aplicaÁıes.
+0.2.1
+- Sem altera√ß√µes de l√≥gica no c√≥digo.
+- Refactoring pesado na parte do Servlet e do Servi√ßo.
+- Redistribui√ß√£o interna do c√≥digo em pacotes:
+
+  > web: Front-end. Requer Jetty ou algum servidor de aplica√ß√µes.
      - cardbattle.web
-          Servlet e integraÁ„o com back-end
+          Servlet e integra√ß√£o com back-end
      - cardbattle.web.impl
-          ImplementaÁ„o para fazer a parte web funcionar
+          Implementa√ß√£o para fazer a parte web funcionar
   
-  > src: Back-end. Standalone, n„o requer servidor de aplicaÁıes.
+  > src: Back-end. Standalone, n√£o requer servidor de aplica√ß√µes.
      - cardbattle.battle
           Toda parte "core" de batalha do CardBattle
      - cardbattle.battle.definitions
-          DefiniÁıes est·ticas da batalha
+          Defini√ß√µes est√°ticas da batalha
      - cardbattle.battle.execution
           Guarda estados das batalhas executando
      - cardbattle.battle.status
-          Trata os status da batalha para apresentaÁ„o para o cliente
+          Trata os status da batalha para apresenta√ß√£o para o cliente
      - cardbattle.common
-          Classes comuns / utilit·rias / exceÁıes
+          Classes comuns / utilit√°rias / exce√ß√µes
      - cardbattle.service
           Interface com o front-end da parte interna
-     - cardbattle.server --deprecated--
-          ImplementaÁ„o anterior da interface com o front-end.
+     - cardbattle.server --deprecated, morre na 0.3--
+          Implementa√ß√£o anterior da interface com o front-end.
     
   > test: Testes
 
-ROADMAP
-- Classes de testes para os serviÁos, status, web, exceÁıes etc.
-- N„o pegar atualizaÁıes de outras batalhas sem ser a sua.
-- Criar tratamento de interrupÁ„o de autoupdate ("Stop").
-- Lidar com desconexıes:
+==============================
+ROADMAPS FUTUROS
+
+- Classes de testes para os servi√ßos, status, web, exce√ß√µes etc.
+- Lidar com situa√ß√µes de erro (ex: comandos inv√°lidos)
+- Permitir digitar um comando pr√≥prio via interface web.
+- N√£o pegar atualiza√ß√µes de outras batalhas sem ser a sua.
+- Criar tratamento de interrup√ß√£o de autoupdate ("Stop").
+- Melhorar documenta√ß√£o front-end (HTML e JS).
+- Lidar com desconex√µes do lado do servidor:
   WARN:oejs.ServletHandler:/CardBattle
   java.lang.IllegalStateException: IDLE,initial
 	at org.eclipse.jetty.server.AsyncContinuation.complete(AsyncContinuation.java:582)
 	at cardbattle.server.CardBattleServlet.updateAsyncConnections(CardBattleServlet.java:80)
 	at cardbattle.server.CardBattleServlet.doGet(CardBattleServlet.java:46)
 
-
 ==============================
+VERS√ïES ANTERIORES
 
-Vers„o 0.2 - ASYNC SERVLET
-InÌcio: 12/nov/2015
-LiberaÁ„o: 14/nov/2015
+Vers√£o 0.2 - ASYNC SERVLET
+In√≠cio: 12/nov/2015
+Libera√ß√£o: 14/nov/2015
 
 - Aprimoramento da interface HTML para o Servlet.
-- CriaÁ„o do version_history.txt.
-- CriaÁ„o do conceito "BattleManager Uptime" e serviÁo "uptime"
-- CriaÁ„o do serviÁo "status [battleId] [sinceTime]"
-- Primeira vers„o do Async Servlet.
+- Cria√ß√£o do version_history.txt.
+- Cria√ß√£o do conceito "BattleManager Uptime" e servi√ßo "uptime"
+- Cria√ß√£o do servi√ßo "status [battleId] [sinceTime]"
+- Primeira vers√£o do Async Servlet.
 
-==============================
+------------------------------
 
-Vers„o 0.1 - SERVLET
-InÌcio: 11/nov/2015
+Vers√£o 0.1 - SERVLET
+In√≠cio: 11/nov/2015
 
-  CriaÁ„o do BattleManager.
-  CriaÁ„o do Servlet.
-  CriaÁ„o do Services.
-  CriaÁ„o do HTML de acesso ao Servlet.
-  CriaÁ„o do readme.md.
-  Primeira execuÁ„o de Servlet com sucesso. 
+  Cria√ß√£o do BattleManager.
+  Cria√ß√£o do Servlet.
+  Cria√ß√£o do Services.
+  Cria√ß√£o do HTML de acesso ao Servlet.
+  Cria√ß√£o do readme.md.
+  Primeira execu√ß√£o de Servlet com sucesso. 
 
-==============================
+------------------------------
 
-Vers„o 0.0 - BASE DO C”DIGO
-InÌcio: 05/nov/2015
+Vers√£o 0.0 - BASE DO C√ìDIGO
+In√≠cio: 05/nov/2015
 
-  Primeira vers„o disponÌvel no GitHub.
-  CriaÁ„o do core do CardBattle com testes unit·rios.
-  Separada a avaliaÁ„o de Skills em uma classe a parte.
-  ImplementaÁ„o do conceito de CharacterTemplate com conjunto de skills.
+  Primeira vers√£o dispon√≠vel no GitHub.
+  Cria√ß√£o do core do CardBattle com testes unit√°rios.
+  Separada a avalia√ß√£o de Skills em uma classe a parte.
+  Implementa√ß√£o do conceito de CharacterTemplate com conjunto de skills.
   Criadas todas as skills do Lash e do Ayllan.
-  Skills do Ayllan ainda n„o est„o definitivas, mas est„o funcionais. 
+  Skills do Ayllan ainda n√£o est√£o definitivas, mas est√£o funcionais. 
 
 ==============================
-  

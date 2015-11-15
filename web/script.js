@@ -19,10 +19,10 @@ $(function () {
 	var $battleStatus = $('#battle_status');
 
 	function startPoll(battleId) {
-		$push_result.html('Logging Battle ' + battleId + ' updates.');
+		$push_result.html(timestamp() + ' Logging Battle ' + battleId + ' updates.');
 		_battleId = battleId;
 		_polling = true;
-		_nextPollTime = performance.now() + 1000;
+		_nextPollTime = timestamp() + 1000;
 		requestBattleStatus(battleId);
 	}
 
@@ -41,7 +41,7 @@ $(function () {
 		$battleStatus.removeClass('changed');
 		setTimeout(function () {
 			var dataLines = data.split('\n');
-			$push_result.append('\n' + dataLines[0] + ' Autoupdate due to ' + dataLines[1]).scrollTop($push_result[0].scrollHeight);
+			$push_result.append('\n' + timestamp() + ' [' + dataLines[0] + '] Autoupdate due to ' + dataLines[1]).scrollTop($push_result[0].scrollHeight);
 			$battleStatus.html(data).addClass('changed');
 			_clearChanged = setTimeout(function () {
 				$battleStatus.removeClass('changed');
@@ -50,16 +50,30 @@ $(function () {
 		}, 100);		
 	}
 
+	function timestamp() {
+		return new Date().getTime();
+	}
+	
 	function requestBattleStatus(battleId) {
 		$polling.show();
 		$stop.hide();
-		$.get('CardBattle?status ' + _battleId + ' 0', function (data) {
+		var time = timestamp();
+		$push_result.append('\n' + time + ' Request battle ' + _battleId + ' status update queued.').scrollTop($push_result[0].scrollHeight);
+
+		// IMPORANTE: É necessário enviar um timestamp no request ajax, pois
+		// se forem dois request ajax assíncronos IDÊNTICOS em seguida, o
+		// servidor só vai considerar um, e aí só um dos clientes vai
+		// receber as notificações...
+		var ajaxRequest = 'CardBattle?status ' + _battleId + ' ' + time;
+
+		$.get(ajaxRequest, function (data) {
+			$push_result.append('\n' + timestamp() + ' Battle status update received').scrollTop($push_result[0].scrollHeight);
 			$polling.hide();
 			$stop.show();
 			if (battleId == _battleId) {
 				updateBattleStatus(data);
 				if (getPolling()) {
-					var now = performance.now();
+					var now = timestamp();
 					var nextPollDelay = _nextPollTime - now;
 					if (nextPollDelay <= 0) {
 						nextPollDelay = 1;

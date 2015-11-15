@@ -1,16 +1,16 @@
-package cardbattle;
+package cardbattle.battle.definitions;
 
-import static cardbattle.Property.DELAYED_EFFECT_2;
-import static cardbattle.Property.SLASH_BOOSTED;
-import static cardbattle.exceptions.CardBattleException.INVALID_SKILL_NAME;
-import static cardbattle.exceptions.CardBattleException.error;
+import static cardbattle.battle.definitions.Property.DELAYED_EFFECT_2;
+import static cardbattle.battle.definitions.Property.SLASH_BOOSTED;
+import static cardbattle.common.CardBattleError.INVALID_SKILL_NAME;
+import static cardbattle.common.CardBattleException.error;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import cardbattle.exceptions.CardBattleException;
+import cardbattle.common.CardBattleException;
 
 public enum Skill {
 

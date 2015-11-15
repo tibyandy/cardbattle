@@ -12,6 +12,7 @@ package cardbattle.server;
  *
  * @author Andy
  */
+@Deprecated
 public class ServiceResponse {
 
 	public final boolean synchedResponse;

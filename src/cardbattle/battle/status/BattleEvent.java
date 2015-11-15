@@ -1,4 +1,4 @@
-package cardbattle;
+package cardbattle.battle.status;
 
 public enum BattleEvent {
 	Battle_Created,

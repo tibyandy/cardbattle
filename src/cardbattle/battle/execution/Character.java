@@ -1,14 +1,17 @@
-package cardbattle;
+package cardbattle.battle.execution;
 
-import static cardbattle.Property.SLASH_BOOSTED;
-import static cardbattle.exceptions.CardBattleException.INVALID_SKILL_NAME;
-import static cardbattle.exceptions.CardBattleException.error;
+import static cardbattle.battle.definitions.Property.SLASH_BOOSTED;
+import static cardbattle.common.CardBattleError.INVALID_SKILL_NAME;
+import static cardbattle.common.CardBattleException.error;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import cardbattle.exceptions.CardBattleException;
+import cardbattle.battle.BattleManager;
+import cardbattle.battle.definitions.CharacterTemplateInterface;
+import cardbattle.battle.definitions.Skill;
+import cardbattle.common.CardBattleException;
 
 public class Character {
 
@@ -54,10 +57,10 @@ public class Character {
 		skillDamage = skill.damage;
 		skillSpeed = skill.speed;
 
-		if (slashing && skill.has(SLASH_BOOSTED)) {
+		if (isSlashing() && skill.has(SLASH_BOOSTED)) {
 			skillSpeed++;
 		}
-		if (knockedDown) {
+		if (isKnockedDown()) {
 			skillSpeed--;
 		}
 		skillSetTime = BattleManager.getUptime();
@@ -84,5 +87,17 @@ public class Character {
 
 	public long getSkillSetTime() {
 		return skillSetTime;
+	}
+
+	public boolean isDamaged() {
+		return damaged;
+	}
+
+	public boolean isSlashing() {
+		return slashing;
+	}
+
+	public boolean isKnockedDown() {
+		return knockedDown;
 	}
 }

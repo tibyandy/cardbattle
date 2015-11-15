@@ -1,8 +1,12 @@
-package cardbattle;
+package cardbattle.battle.execution;
 
-import static cardbattle.exceptions.CardBattleException.INVALID_CHARACTER_ID;
-import static cardbattle.exceptions.CardBattleException.error;
-import cardbattle.exceptions.CardBattleException;
+import static cardbattle.common.CardBattleError.INVALID_CHARACTER_ID;
+import static cardbattle.common.CardBattleException.error;
+import cardbattle.battle.definitions.CharacterTemplateInterface;
+import cardbattle.battle.definitions.Skill;
+import cardbattle.battle.status.BattleEvent;
+import cardbattle.battle.status.BattleStatus;
+import cardbattle.common.CardBattleException;
 
 public class CardBattle {
 
@@ -75,10 +79,7 @@ public class CardBattle {
 		return "CardBattle[" + id + "]";
 	}
 
-	public BattleStatus getBattleStatus(long lastSyncTime) {
-		if (battleStatus != null && lastSyncTime < battleStatus.getTime()) {
-			return battleStatus;
-		}
-		return null;
+	public BattleStatus getBattleStatus() {
+		return battleStatus;
 	}
 }

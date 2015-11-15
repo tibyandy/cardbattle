@@ -1,4 +1,7 @@
-package cardbattle;
+package cardbattle.battle.status;
+
+import cardbattle.battle.definitions.Skill;
+import cardbattle.battle.execution.Character;
 
 public class CharacterStatus {
 
@@ -11,10 +14,10 @@ public class CharacterStatus {
 
 	public CharacterStatus(Character character) {
 		name = character.getName();
-		hp = character.hp;
+		hp = character.getHP();
 		skillSelected = character.getSkill() != Skill.NONE;
-		knockedDown = character.knockedDown;
-		slashing = character.slashing;
+		knockedDown = character.isKnockedDown();
+		slashing = character.isSlashing();
 		skillSetTime = character.getSkillSetTime();
 	}
 

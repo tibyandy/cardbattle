@@ -1,6 +1,9 @@
 package cardbattle;
 
-public class TestCharacterTemplate implements CharacterTemplateInterface {
+import cardbattle.battle.definitions.CharacterTemplateInterface;
+import cardbattle.battle.definitions.Skill;
+
+public class CharacterTemplateTest implements CharacterTemplateInterface {
 	public int getHP() {
 		return 30;
 	}

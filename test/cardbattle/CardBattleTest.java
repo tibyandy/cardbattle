@@ -1,18 +1,19 @@
 package cardbattle;
 
-import static cardbattle.CharacterTemplate.AYLLAN;
-import static cardbattle.CharacterTemplate.LASH;
-import static cardbattle.Skill.ATTACK;
-import static cardbattle.Skill.ATTACK_D_SPEED;
-import static cardbattle.Skill.ATTACK_E_SPEED;
-import static cardbattle.Skill.ATTACK_QUICK;
-import static cardbattle.Skill.ATTACK_SLOW;
-import static cardbattle.Skill.FIREWALL;
-import static cardbattle.Skill.HEAVY_SLASH;
-import static cardbattle.Skill.METEOR;
-import static cardbattle.Skill.MIND_BLAST;
-import static cardbattle.Skill.SLASH;
-import static cardbattle.Skill.TRIPLE_SLASH;
+import static cardbattle.battle.definitions.CharacterTemplate.AYLLAN;
+import static cardbattle.battle.definitions.CharacterTemplate.LASH;
+import static cardbattle.battle.definitions.Skill.ATTACK;
+import static cardbattle.battle.definitions.Skill.ATTACK_D_SPEED;
+import static cardbattle.battle.definitions.Skill.ATTACK_E_SPEED;
+import static cardbattle.battle.definitions.Skill.ATTACK_QUICK;
+import static cardbattle.battle.definitions.Skill.ATTACK_SLOW;
+import static cardbattle.battle.definitions.Skill.FIREWALL;
+import static cardbattle.battle.definitions.Skill.HEAVY_SLASH;
+import static cardbattle.battle.definitions.Skill.METEOR;
+import static cardbattle.battle.definitions.Skill.MIND_BLAST;
+import static cardbattle.battle.definitions.Skill.SLASH;
+import static cardbattle.battle.definitions.Skill.TRIPLE_SLASH;
+import static cardbattle.common.CardBattleError.INVALID_SKILL_NAME;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
@@ -21,11 +22,14 @@ import static org.junit.Assert.fail;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
-import cardbattle.exceptions.CardBattleException;
+import cardbattle.battle.definitions.CharacterTemplateInterface;
+import cardbattle.battle.definitions.Skill;
+import cardbattle.battle.execution.CardBattle;
+import cardbattle.common.CardBattleException;
 
 public class CardBattleTest {
 
-	private static final CharacterTemplateInterface DUMMY = new TestCharacterTemplate();
+	private static final CharacterTemplateInterface DUMMY = new CharacterTemplateTest();
 
 	private int calcLife(CharacterTemplateInterface chara, Skill... skills) {
 		int hp = chara.getHP();
@@ -327,7 +331,7 @@ public class CardBattleTest {
 			b.setSkill(c, firewall);
 			fail("Expected CardBattleException");
 		} catch (CardBattleException e) {
-			assertThat(e.error(), is(CardBattleException.INVALID_SKILL_NAME));
+			assertThat(e.error(), is(INVALID_SKILL_NAME));
 		}
 	}
 

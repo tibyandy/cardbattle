@@ -1,16 +1,19 @@
 package cardbattle;
 
+import static cardbattle.common.CardBattleError.INVALID_BATTLE_ID;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import cardbattle.exceptions.CardBattleException;
+import cardbattle.battle.BattleManager;
+import cardbattle.battle.definitions.CharacterTemplate;
+import cardbattle.battle.execution.CardBattle;
+import cardbattle.common.CardBattleException;
 
 public class BattleManagerTest {
 
@@ -50,7 +53,7 @@ public class BattleManagerTest {
 			BattleManager.getBattle(battleId);
 			fail("Expected CardBattleException");
 		} catch (CardBattleException e) {
-			assertThat(e.error(), is(CardBattleException.INVALID_BATTLE_ID));
+			assertThat(e.error(), is(INVALID_BATTLE_ID));
 		}
 	}
 }

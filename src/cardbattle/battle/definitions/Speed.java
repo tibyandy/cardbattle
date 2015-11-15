@@ -1,4 +1,4 @@
-package cardbattle;
+package cardbattle.battle.definitions;
 
 public enum Speed {
 	E(0),

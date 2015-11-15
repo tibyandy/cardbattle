@@ -1,13 +1,15 @@
-package cardbattle;
+package cardbattle.battle;
 
-import static cardbattle.exceptions.CardBattleException.INVALID_BATTLE_ID;
-import static cardbattle.exceptions.CardBattleException.error;
+import static cardbattle.common.CardBattleError.INVALID_BATTLE_ID;
+import static cardbattle.common.CardBattleException.error;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import cardbattle.exceptions.CardBattleException;
+import cardbattle.battle.definitions.CharacterTemplateInterface;
+import cardbattle.battle.execution.CardBattle;
+import cardbattle.common.CardBattleException;
 
 public class BattleManager {
 

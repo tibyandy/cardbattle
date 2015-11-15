@@ -2,6 +2,50 @@ CARD BATTLE - HISTÓRICO DE VERSÕES
 
 ==============================
 
+Versão 0.2.1 - REFACTORING
+Início: 14/nov/2015
+Liberação: 15/nov/2015
+
+- Reestruturação interna do código em pacotes:
+
+  > web: Front-end. Requer Jetty ou algum servidor de aplicações.
+     - cardbattle.web
+          Servlet e integração com back-end
+     - cardbattle.web.impl
+          Implementação para fazer a parte web funcionar
+  
+  > src: Back-end. Standalone, não requer servidor de aplicações.
+     - cardbattle.battle
+          Toda parte "core" de batalha do CardBattle
+     - cardbattle.battle.definitions
+          Definições estáticas da batalha
+     - cardbattle.battle.execution
+          Guarda estados das batalhas executando
+     - cardbattle.battle.status
+          Trata os status da batalha para apresentação para o cliente
+     - cardbattle.common
+          Classes comuns / utilitárias / exceções
+     - cardbattle.service
+          Interface com o front-end da parte interna
+     - cardbattle.server --deprecated--
+          Implementação anterior da interface com o front-end.
+    
+  > test: Testes
+
+ROADMAP
+- Classes de testes para os serviços, status, web, exceções etc.
+- Não pegar atualizações de outras batalhas sem ser a sua.
+- Criar tratamento de interrupção de autoupdate ("Stop").
+- Lidar com desconexões:
+  WARN:oejs.ServletHandler:/CardBattle
+  java.lang.IllegalStateException: IDLE,initial
+	at org.eclipse.jetty.server.AsyncContinuation.complete(AsyncContinuation.java:582)
+	at cardbattle.server.CardBattleServlet.updateAsyncConnections(CardBattleServlet.java:80)
+	at cardbattle.server.CardBattleServlet.doGet(CardBattleServlet.java:46)
+
+
+==============================
+
 Versão 0.2 - ASYNC SERVLET
 Início: 12/nov/2015
 Liberação: 14/nov/2015
@@ -11,18 +55,6 @@ Liberação: 14/nov/2015
 - Criação do conceito "BattleManager Uptime" e serviço "uptime"
 - Criação do serviço "status [battleId] [sinceTime]"
 - Primeira versão do Async Servlet.
-
-Roadmap Versão 0.2.1
-
-- Melhoria do código do Servlet / documentação interna.
-- Não pegar atualizações de outras batalhas sem ser a sua.
-- Criar tratamento de interrupção de autoupdate ("Stop").
-- Lidar com desconexões:
-  WARN:oejs.ServletHandler:/CardBattle
-  java.lang.IllegalStateException: IDLE,initial
-	at org.eclipse.jetty.server.AsyncContinuation.complete(AsyncContinuation.java:582)
-	at cardbattle.server.CardBattleServlet.updateAsyncConnections(CardBattleServlet.java:80)
-	at cardbattle.server.CardBattleServlet.doGet(CardBattleServlet.java:46)
 
 ==============================
 

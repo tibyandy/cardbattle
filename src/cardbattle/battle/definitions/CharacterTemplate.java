@@ -1,12 +1,12 @@
-package cardbattle;
+package cardbattle.battle.definitions;
 
-import static cardbattle.exceptions.CardBattleException.INVALID_CHARACTER_NAME;
-import static cardbattle.exceptions.CardBattleException.error;
+import static cardbattle.common.CardBattleError.INVALID_CHARACTER_NAME;
+import static cardbattle.common.CardBattleException.error;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import cardbattle.exceptions.CardBattleException;
+import cardbattle.common.CardBattleException;
 
 public enum CharacterTemplate implements CharacterTemplateInterface {
 	LASH(25, Skill.SLASH, Skill.TRIPLE_SLASH, Skill.HEAVY_SLASH),

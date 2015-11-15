@@ -1,16 +1,24 @@
 package cardbattle.server;
 
-import static cardbattle.BattleManager.getBattle;
+import static cardbattle.battle.BattleManager.getBattle;
 import static cardbattle.server.ServiceResponse.response;
 import static cardbattle.server.ServiceResponse.syncResponse;
 import static java.lang.String.format;
-import cardbattle.BattleManager;
-import cardbattle.BattleStatus;
-import cardbattle.CardBattle;
-import cardbattle.CharacterTemplate;
-import cardbattle.Skill;
-import cardbattle.exceptions.CardBattleException;
+import cardbattle.battle.BattleManager;
+import cardbattle.battle.definitions.CharacterTemplate;
+import cardbattle.battle.definitions.Skill;
+import cardbattle.battle.execution.CardBattle;
+import cardbattle.battle.status.BattleStatus;
+import cardbattle.common.CardBattleException;
 
+/**
+ * Classe antiga de serviços.
+ * Mantida apenas para referência.
+ * 
+ * Será removida na versão 0.3.
+ * @author Andy
+ */
+@Deprecated
 public class Services {
 
 	public static ServiceResponse process(String[] args) {
@@ -55,7 +63,7 @@ public class Services {
 	}
 
 	private static String status(int battleId, long lastSyncTime) throws CardBattleException {
-		BattleStatus battleStatus = getBattle(battleId).getBattleStatus(lastSyncTime);
+		BattleStatus battleStatus = getBattle(battleId).getBattleStatus();
 		return battleStatus == null ? "" : battleStatus.toString();
 	}
 

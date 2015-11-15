@@ -1,4 +1,7 @@
-package cardbattle;
+package cardbattle.battle.status;
+
+import cardbattle.battle.BattleManager;
+import cardbattle.battle.execution.Character;
 
 public class BattleStatus {
 

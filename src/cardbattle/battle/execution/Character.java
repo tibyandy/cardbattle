@@ -63,7 +63,7 @@ public class Character {
 		if (isKnockedDown()) {
 			skillSpeed--;
 		}
-		skillSetTime = BattleManager.getUptime();
+		skillSetTime = BattleManager.getInstance().getUptime();
 	}
 
 	public int getSkillSpeed() {

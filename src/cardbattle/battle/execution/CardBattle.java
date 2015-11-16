@@ -7,6 +7,7 @@ import cardbattle.battle.definitions.Skill;
 import cardbattle.battle.status.BattleEvent;
 import cardbattle.battle.status.BattleStatus;
 import cardbattle.common.CardBattleException;
+import cardbattle.lobby.BattleRoom;
 
 public class CardBattle {
 
@@ -24,6 +25,14 @@ public class CardBattle {
 		for (int i = 0; i < 2; i++) {
 			ch[i] = new Character(characters[i]);
 		}
+		battleStatus = new BattleStatus(BattleEvent.Battle_Created, ch);
+	}
+
+	public CardBattle(int id, BattleRoom battleRoom) {
+		this.id = id;
+		ch[0] = new Character(battleRoom.host.getCharacter());
+		ch[1] = new Character(battleRoom.guest.getCharacter());
+		battleRoom.setBattle(this);
 		battleStatus = new BattleStatus(BattleEvent.Battle_Created, ch);
 	}
 

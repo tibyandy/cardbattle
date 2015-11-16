@@ -1,6 +1,5 @@
 package cardbattle.server;
 
-import static cardbattle.battle.BattleManager.getBattle;
 import static cardbattle.server.ServiceResponse.response;
 import static cardbattle.server.ServiceResponse.syncResponse;
 import static java.lang.String.format;
@@ -68,11 +67,11 @@ public class Services {
 	}
 
 	private static String uptime() {
-		return format("OK\nUpTime = %d", BattleManager.getUptime());
+		return format("OK\nUpTime = %d", BattleManager.getInstance().getUptime());
 	}
 
 	private static String resetServer() throws CardBattleException {
-		BattleManager.reset();
+		BattleManager.getInstance().reset();
 		return "OK";
 	}
 
@@ -87,7 +86,7 @@ public class Services {
 	}
 
 	private static String createBattle(String char1name, String char2name) throws CardBattleException {
-		int battleId = BattleManager.createBattle(
+		int battleId = BattleManager.getInstance().createBattle(
 				CharacterTemplate.get(char1name),
 				CharacterTemplate.get(char2name)).id;
 		return format("OK\nBattleId = %d", battleId);
@@ -107,5 +106,9 @@ public class Services {
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException(e);
 		}
+	}
+
+	private static CardBattle getBattle(int id) throws CardBattleException {
+		return BattleManager.getInstance().getBattle(id);
 	}
 }

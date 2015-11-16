@@ -23,13 +23,14 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import cardbattle.battle.definitions.CharacterTemplateInterface;
+import cardbattle.battle.definitions.DummyCharacterTemplate;
 import cardbattle.battle.definitions.Skill;
 import cardbattle.battle.execution.CardBattle;
 import cardbattle.common.CardBattleException;
 
 public class CardBattleTest {
 
-	private static final CharacterTemplateInterface DUMMY = new CharacterTemplateTest();
+	private static final CharacterTemplateInterface DUMMY = new DummyCharacterTemplate();
 
 	private int calcLife(CharacterTemplateInterface chara, Skill... skills) {
 		int hp = chara.getHP();

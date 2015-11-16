@@ -11,7 +11,7 @@ public class BattleStatus {
 	
 	public BattleStatus(BattleEvent event, Character[] ch) {
 		this.event = event.toString();
-		this.time = BattleManager.getUptime();
+		this.time = BattleManager.getInstance().getUptime();
 		characterStatus[0] = new CharacterStatus(ch[0]);
 		characterStatus[1] = new CharacterStatus(ch[1]);
 	}

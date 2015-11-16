@@ -3,6 +3,31 @@ CARD BATTLE - HISTÓRICO DE VERSÕES
 ==============================
 VERSÃO ATUAL
 
+Versão 0.2.2 - BATTLE ROOMS
+Início: 16/11/2015
+
+- Implementação dos conceitos de BattleRoom e Player
+- BattleManager deixa de ser classe utilitária estática e passa a ser singleton
+
+==============================
+ROADMAPS FUTUROS
+
+- Classes de testes para os serviços, status, web, exceções etc.
+- Lidar com situações de erro (ex: comandos inválidos)
+- Permitir digitar um comando próprio via interface web.
+- Não pegar atualizações de outras batalhas sem ser a sua.
+- Criar tratamento de interrupção de autoupdate ("Stop").
+- Melhorar documentação front-end (HTML e JS).
+- Lidar com desconexões do lado do servidor:
+  WARN:oejs.ServletHandler:/CardBattle
+  java.lang.IllegalStateException: IDLE,initial
+	at org.eclipse.jetty.server.AsyncContinuation.complete(AsyncContinuation.java:582)
+	at cardbattle.server.CardBattleServlet.updateAsyncConnections(CardBattleServlet.java:80)
+	at cardbattle.server.CardBattleServlet.doGet(CardBattleServlet.java:46)
+
+==============================
+VERSÕES ANTERIORES
+
 Versão 0.2.1 - REFACTORING
 Início: 14/nov/2015
 Liberação: 15/nov/2015 (0.2.1 e 0.2.1b)
@@ -41,24 +66,7 @@ Liberação: 15/nov/2015 (0.2.1 e 0.2.1b)
     
   > test: Testes
 
-==============================
-ROADMAPS FUTUROS
-
-- Classes de testes para os serviços, status, web, exceções etc.
-- Lidar com situações de erro (ex: comandos inválidos)
-- Permitir digitar um comando próprio via interface web.
-- Não pegar atualizações de outras batalhas sem ser a sua.
-- Criar tratamento de interrupção de autoupdate ("Stop").
-- Melhorar documentação front-end (HTML e JS).
-- Lidar com desconexões do lado do servidor:
-  WARN:oejs.ServletHandler:/CardBattle
-  java.lang.IllegalStateException: IDLE,initial
-	at org.eclipse.jetty.server.AsyncContinuation.complete(AsyncContinuation.java:582)
-	at cardbattle.server.CardBattleServlet.updateAsyncConnections(CardBattleServlet.java:80)
-	at cardbattle.server.CardBattleServlet.doGet(CardBattleServlet.java:46)
-
-==============================
-VERSÕES ANTERIORES
+------------------------------
 
 Versão 0.2 - ASYNC SERVLET
 Início: 12/nov/2015

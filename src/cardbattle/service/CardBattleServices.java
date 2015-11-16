@@ -1,6 +1,5 @@
 package cardbattle.service;
 
-import static cardbattle.battle.BattleManager.getBattle;
 import cardbattle.battle.BattleManager;
 import cardbattle.battle.definitions.CharacterTemplate;
 import cardbattle.battle.definitions.Skill;
@@ -21,19 +20,21 @@ public class CardBattleServices {
 		return instance;
 	}
 
+	private BattleManager battleManager = BattleManager.getInstance();
+	
 	public CardBattleServiceResult welcome() {
 		return new CardBattleServiceResult("CardBattleServer is up and running.");
 	}
 
 	public CardBattleServiceResult resetServer() {
-		BattleManager.reset();
+		battleManager.reset();
 		return new CardBattleServiceResult("CardBattleServer is reset!");
 	}
 
 	public CardBattleServiceResult createBattle(String char1name, String char2name) throws CardBattleException {
 		CharacterTemplate chara1 = CharacterTemplate.get(char1name);
 		CharacterTemplate chara2 = CharacterTemplate.get(char2name);
-		CardBattle newBattle = BattleManager.createBattle(chara1, chara2);
+		CardBattle newBattle = battleManager.createBattle(chara1, chara2);
 		return new CardBattleServiceResult(true, "Battle with ID %d created.", newBattle.id);
 	}
 
@@ -48,12 +49,16 @@ public class CardBattleServices {
 	}
 
 	public CardBattleServiceResult uptime() {
-		long uptime = BattleManager.getUptime();
+		long uptime = battleManager.getUptime();
 		return new CardBattleServiceResult(String.valueOf(uptime));
 	}
 	
 	public CardBattleServiceResult status(int battleId) throws CardBattleException {
 		BattleStatus battleStatus = getBattle(battleId).getBattleStatus();
 		return new CardBattleServiceResult(battleStatus.toString());
+	}
+
+	private CardBattle getBattle(int battleId) throws CardBattleException {
+		return battleManager.getBattle(battleId);
 	}
 }

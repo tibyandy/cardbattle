@@ -1,4 +1,4 @@
-package cardbattle.lobby;
+package cardbattle.player;
 
 import cardbattle.battle.definitions.CharacterTemplate;
 

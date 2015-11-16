@@ -12,6 +12,7 @@ Início: 16/11/2015
 ==============================
 ROADMAPS FUTUROS
 
+- Tratamento de retorno de erros e sucesso (CardBattleServiceResult) nos serviços
 - Classes de testes para os serviços, status, web, exceções etc.
 - Lidar com situações de erro (ex: comandos inválidos)
 - Permitir digitar um comando próprio via interface web.

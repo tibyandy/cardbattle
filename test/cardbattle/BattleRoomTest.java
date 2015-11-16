@@ -14,7 +14,7 @@ import org.junit.Test;
 import cardbattle.battle.BattleManager;
 import cardbattle.battle.execution.CardBattle;
 import cardbattle.lobby.BattleRoom;
-import cardbattle.lobby.Player;
+import cardbattle.player.Player;
 
 public class BattleRoomTest {
 

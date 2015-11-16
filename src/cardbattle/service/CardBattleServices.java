@@ -6,6 +6,7 @@ import cardbattle.battle.definitions.Skill;
 import cardbattle.battle.execution.CardBattle;
 import cardbattle.battle.status.BattleStatus;
 import cardbattle.common.CardBattleException;
+import cardbattle.player.PlayerManager;
 
 public class CardBattleServices {
 
@@ -21,6 +22,7 @@ public class CardBattleServices {
 	}
 
 	private BattleManager battleManager = BattleManager.getInstance();
+	private PlayerManager playerManager = PlayerManager.getInstance();
 	
 	public CardBattleServiceResult welcome() {
 		return new CardBattleServiceResult("CardBattleServer is up and running.");
@@ -60,5 +62,15 @@ public class CardBattleServices {
 
 	private CardBattle getBattle(int battleId) throws CardBattleException {
 		return battleManager.getBattle(battleId);
+	}
+
+	public CardBattleServiceResult joinPlayer(String playerName) {
+		try {
+			playerManager.join(playerName);
+		} catch (CardBattleException e) {
+			// TODO tratamento de erros e sucesso para os outros serviços
+			return new CardBattleServiceResult(e.getMessage()).success(false);
+		}
+		return new CardBattleServiceResult("Player joined.");
 	}
 }

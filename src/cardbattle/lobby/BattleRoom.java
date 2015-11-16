@@ -1,6 +1,7 @@
 package cardbattle.lobby;
 
 import cardbattle.battle.execution.CardBattle;
+import cardbattle.player.Player;
 
 public class BattleRoom {
 

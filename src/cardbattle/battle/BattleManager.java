@@ -11,7 +11,7 @@ import cardbattle.battle.definitions.CharacterTemplateInterface;
 import cardbattle.battle.execution.CardBattle;
 import cardbattle.common.CardBattleException;
 import cardbattle.lobby.BattleRoom;
-import cardbattle.lobby.Player;
+import cardbattle.player.Player;
 
 public class BattleManager {
 

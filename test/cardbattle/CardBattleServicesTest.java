@@ -16,4 +16,14 @@ public class CardBattleServicesTest {
 		CardBattleServiceResult result = services.welcome();
 		Assert.assertThat(result.success(), CoreMatchers.is(true));
 	}
+
+	@Test
+	public void testJoinPlayer() {
+		CardBattleServiceResult result = services.joinPlayer("Andy");
+		Assert.assertThat(result.success(), CoreMatchers.is(true));
+		result = services.joinPlayer("Andy");
+		Assert.assertThat(result.success(), CoreMatchers.is(false));
+		result = services.joinPlayer("Jeff");
+		Assert.assertThat(result.success(), CoreMatchers.is(true));
+	}
 }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CardBattle!</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="cb_params.js"></script>
+	<script type="text/javascript" src="cardbattle.js"></script>
+</head>
+<body class="loading">
+<form>
+<header>
+	<h1>Card Battle Ver <span id="ver"></span></h1>
+	<a target="_top" href="version_history.txt">Version history</a>
+	<a target="_top" href="https://github.com/tibyandy/cardbattle">GitHub</a>
+	<button type="button" id="logout">Logout</button>
+</header>
+<div id="growl"></div>
+<div id="view">
+	<section id="login">
+		<h2>Welcome to Card Battle!</h2>
+		<div>
+			<label>Player ID: </label>
+			<select id="playerId"></select>
+			<label>Password: </label>
+			<input id="password" type="password" />
+			<input id="connect" type="submit" value="Connect" />
+		</div>
+	</section>
+</div>
+</form>
+</body>
+</html>

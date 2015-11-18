@@ -1,6 +1,9 @@
 * {
 	box-sizing: border-box;
 }
+body.loading #view, body.loading #growl, body.loading #logout {
+	display: none;
+}
 html, body, #view {
 	margin: 0;
 	background: #CFD8DC /* Blue Grey 100 */;
@@ -60,7 +63,7 @@ h2, h3 {
 	height: 27px;
 	padding: 3px 4px 4px;
 }
-body > header, h1, h2, h3, ul, #battle_status, input, textarea, iframe {
+body > header, h1, h2, h3, ul, #battle_status, select, label, input, textarea, iframe, #growl, a {
 	font-family: sans-serif;
 	color: rgba(0,0,0,0.87);
 }
@@ -126,9 +129,20 @@ iframe {
 	margin: -10px 0 0;
 	height: 100px;
 }
-input {
+input:not([type=submit]), select {
 	margin: -5px 5px 5px;
 	padding: 1px 2px;
+	height: 22px;
+	line-height: 22px;
+}
+input[type=submit] {
+	margin: -5px 5px 5px;
+	padding: 1px 2px;
+	height: 22px;
+}
+label {
+	margin: 0 5px 0;
+	font-size: 13.5px;
 }
 #battle_status {
 	margin: -5px 5px 5px;
@@ -173,4 +187,41 @@ input {
 
 .unimplemented {
 	display: none !important;
+}
+
+
+#view section#login {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 300px;
+	height: 200px;
+	margin-top: -100px;
+	margin-left: -150px;
+}
+#view section#login h2 {
+	margin-bottom: 5px;
+}
+#view section#login div {
+	padding: 0 10px;
+}
+section label {
+	line-height: 30px;
+}
+#connect {
+	margin-top: 5px;
+	height: 25px;
+}
+#growl {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 32px;
+	line-height: 24px;
+	padding: 5px 8px 3px;
+	background: #ffe;
+	color: #554;
+	font-weight: bold;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }

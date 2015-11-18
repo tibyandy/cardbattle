@@ -1,17 +1,9 @@
 CARD BATTLE - HISTÓRICO DE VERSÕES
 
 ==============================
-VERSÃO ATUAL
-
-Versão 0.2.2 - BATTLE ROOMS
-Início: 16/11/2015
-
-- Implementação dos conceitos de BattleRoom e Player
-- BattleManager deixa de ser classe utilitária estática e passa a ser singleton
-
-==============================
 ROADMAPS FUTUROS
 
+- Permitir apenas uma sessão para o mesmo PlayerID.
 - Tratamento de retorno de erros e sucesso (CardBattleServiceResult) nos serviços
 - Classes de testes para os serviços, status, web, exceções etc.
 - Lidar com situações de erro (ex: comandos inválidos)
@@ -27,7 +19,26 @@ ROADMAPS FUTUROS
 	at cardbattle.server.CardBattleServlet.doGet(CardBattleServlet.java:46)
 
 ==============================
+VERSÃO ATUAL
+
+Versão 0.2.3 - LOGIN
+Início: 18/nov/2015
+Liberação: 18/nov/2015
+
+- Criação de LoginServlet.
+- Novo index.html simula página de login.
+- Criação de cardbattle.js.
+- index.html antigo renomeado para debug.html.
+
+==============================
 VERSÕES ANTERIORES
+
+Versão 0.2.2 - BATTLE ROOMS
+Início: 16/nov/2015
+Liberação: 18/nov/2015
+
+- Implementação dos conceitos de BattleRoom e Player
+- BattleManager deixa de ser classe utilitária estática e passa a ser singleton
 
 Versão 0.2.1 - REFACTORING
 Início: 14/nov/2015

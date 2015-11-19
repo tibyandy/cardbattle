@@ -20,7 +20,7 @@ ROADMAPS FUTUROS
 
 ==============================
 
-VERSÃO ATUAL - 0.2.4
+VERSÃO ATUAL - 0.2.4.dev
 Início: 19/nov/2015
 
 - Criação da apresentação de seleção de personagem e seleção de batalha.

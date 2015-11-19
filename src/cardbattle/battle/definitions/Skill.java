@@ -15,10 +15,10 @@ import cardbattle.common.CardBattleException;
 public enum Skill {
 
 	// Se não leva dano, aumenta V+1 para outros golpes
-	SLASH(3, Speed.B, Property.BOOST_SLASH),
-	TRIPLE_SLASH(7, Speed.B, SLASH_BOOSTED),
+	SLASH("Slash", 3, Speed.B, Property.BOOST_SLASH),
+	TRIPLE_SLASH("Triple Slash", 7, Speed.B, SLASH_BOOSTED),
 	// Se acertar, diminui V-1 para o oponente no próximo turno
-	HEAVY_SLASH(5, Speed.C, SLASH_BOOSTED, Property.KNOCKDOWN),
+	HEAVY_SLASH("Heavy Slash", 5, Speed.C, SLASH_BOOSTED, Property.KNOCKDOWN),
 
 	ATTACK(10, Speed.B),
 
@@ -28,21 +28,28 @@ public enum Skill {
 	ATTACK_E_SPEED(15, Speed.E),
 //	SKILL_FIREBALL(12, Speed.AVERAGE, PROJECTILE),
 
-	METEOR(0, Speed.B, DELAYED_EFFECT_2),
+	METEOR("Meteor", 0, Speed.B, DELAYED_EFFECT_2),
 
 	NONE(0, Speed.E),
-	MIND_BLAST(3, Speed.B),
-	FIREWALL(6, Speed.B);
+	MIND_BLAST("Mind Blast", 3, Speed.B),
+	FIREWALL("Firewall", 6, Speed.B);
 
 	public final Integer damage;
 	public final Integer speed;
 	public final Integer effectDelay;
+	public final String name;
 
 	private final Set<Property> properties;
 
 	private static final Map<String, Skill> SKILLS_BY_NAME = new HashMap<>(); 
-	
+
+	@Deprecated
 	private Skill(Integer damage, Speed speed, Property... properties) {
+		this(null, damage, speed, properties);
+	}
+
+	private Skill(String name, Integer damage, Speed speed, Property... properties) {
+		this.name = name;
 		this.damage = damage;
 		this.speed = speed.n;
 

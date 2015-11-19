@@ -11,6 +11,8 @@ public enum CardBattleServiceName {
 	endTurn(true),
 	createBattle(true),
 	setSkill(true),
+	listCharacters,
+	listPlayers,
 	unknown;
 
 	private static Map<String, CardBattleServiceName> byName;

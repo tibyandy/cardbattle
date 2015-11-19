@@ -73,4 +73,17 @@ public class CardBattleServices {
 		}
 		return new CardBattleServiceResult("Player joined.");
 	}
+
+	public CardBattleServiceResult listCharacters() {
+		StringBuilder out = new StringBuilder();
+		for (CharacterTemplate chara : CharacterTemplate.values()) {
+			out.append(chara.getName()).append(';').append(chara.getHP());
+			for (Skill skill : chara.getSkills()) {
+				out.append(';').append(skill.name);
+			}
+			out.append('\n');
+		}
+		out.setLength(out.length() - 1);
+		return new CardBattleServiceResult(out.toString());
+	}
 }

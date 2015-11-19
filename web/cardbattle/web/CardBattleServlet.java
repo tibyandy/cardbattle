@@ -51,7 +51,7 @@ public class CardBattleServlet extends HttpServlet {
 	private void writeServletResponse(ServletResponse servletResponse, CardBattleServiceResult cbServiceResult) {
 		try {
 			PrintWriter out = servletResponse.getWriter();
-			out.println(cbServiceResult.getResponseMessage());
+			out.print(cbServiceResult.getResponseMessage());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

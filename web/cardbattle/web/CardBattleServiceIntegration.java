@@ -31,6 +31,8 @@ public class CardBattleServiceIntegration {
 	private CardBattleServiceResult run() throws CardBattleException {
 		CardBattleServices services = CardBattleServices.getInstance();
 		switch (service) {
+		case listCharacters:
+			return services.listCharacters();
 		case welcome:
 			return services.welcome();
 		case resetServer:

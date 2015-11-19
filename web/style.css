@@ -37,7 +37,7 @@ body, form {
 #view > section {
 	margin: 3px;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.25), 0 2px 5px rgba(0,0,0,0.25);
-	padding: 0 0 5px;
+	background: #546E7A; /* Blue Grey 600 */
 }
 #view section {
 	display: flex;
@@ -55,23 +55,33 @@ section > div {
 	flex-flow: row;
 }
 #view > section {
-	background: #ECEFF1; /* Blue Grey 50 */
 	border: solid 2px #546E7A; /* Blue Grey 600 */
+	border-radius: 4px;
 }
 #view > section > div {
-	margin: 2px;
+	background: #ECEFF1; /* Blue Grey 50 */
+	padding: 2px;
+	border-radius: 1px 1px 2px 2px;
 }
 #view > section > div > section {
 	margin: 2px;
+}
+#view > section > div > section > div {
 	background: #fff;
+	border-radius: 2px;
 }
 #output, #push_reply, #push_result, #available_commands {
 	flex-grow: 1;
 }
-h2, h3 {
-	line-height: 20px;
-	height: 27px;
-	padding: 3px 4px 4px;
+h2 {
+    line-height: 24px;
+    height: 28px;	
+	padding: 2px 7px 3px;
+}
+h3 {
+	line-height: 15px;
+	height: 25px;
+	padding: 4px 4px 4px;
 }
 body > header, h1, h2, h3, ul, #battle_status, select, label, input, textarea, iframe, #growl, a {
 	font-family: sans-serif;
@@ -108,8 +118,18 @@ h1, header a {
     padding: 2px 15px 0 0;
 }
 header a {
-	color: rgba(255,255,255,0.7);
 	font-size: 11.5px;
+	word-spacing: 2px;
+}
+header button {
+	height: 26px;
+    margin: 3px 0;
+    padding: 0 5px;
+	font-size: 12.5px;
+	word-spacing: 3px;
+}
+header a {
+	color: rgba(255,255,255,0.7);
 	text-decoration: none;
 }
 header a:hover {
@@ -122,7 +142,6 @@ h1 {
 }
 h2 {
 	color: rgba(255,255,255,1);
-	background: #546E7A; /* Blue Grey 600 */
 	margin: 0;
 	font-size: 14.5px;
 	font-weight: normal;
@@ -139,8 +158,7 @@ iframe {
 	margin: -10px 0 0;
 	height: 100px;
 }
-input:not([type=submit]), select {
-	margin: -5px 5px 5px;
+input:not([type=submit]), select:not([size]) {
 	padding: 1px 2px;
 	height: 22px;
 	line-height: 22px;
@@ -150,9 +168,12 @@ input[type=submit] {
 	padding: 1px 2px;
 	height: 22px;
 }
-label {
-	margin: 0 5px 0;
+#login label {
+	margin: 7px 0 -5px;
 	font-size: 13.5px;
+}
+#login button {
+	margin-top: 10px;
 }
 #battle_status {
 	margin: -5px 5px 5px;
@@ -205,22 +226,18 @@ input {
 	left: 50%;
 	top: 50%;
 	width: 300px;
-	height: 200px;
+	height: 205px;
 	margin-top: -100px;
 	margin-left: -150px;
 }
-#view section#login h2 {
-	margin-bottom: 5px;
-}
 #view section#login div {
-	padding: 0 10px;
+	padding: 0 15px;
 }
 section label {
 	line-height: 30px;
 }
 #connect {
 	margin-top: 5px;
-	height: 25px;
 }
 #growl {
 	width: 100%;
@@ -230,8 +247,107 @@ section label {
 	height: 32px;
 	line-height: 24px;
 	padding: 5px 8px 3px;
-	background: #ffe;
-	color: #554;
+	background: rgb(255,255,240);
 	font-weight: bold;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.5);
+}
+.picker {
+	padding: 2px 2px;
+	margin: 0;
+	width: calc(100% - 4px);
+	overflow: hidden;
+	padding: 2px;
+	border: solid 1px #CFD8DC;
+}
+.picker option {
+	line-height: 17px;
+	padding: 3px 5px;
+	margin: 0 0;
+}
+.picker:hover {
+	border: solid 1px #8ac;
+}
+.picker option:hover {
+	background: #f4f8ff;
+}
+/*
+.picker option.active {
+	background: #ECEFF1;
+}
+.picker:hover option.active:hover {
+	border: solid 1px rgba(0,0,0,0.25);
+	background: #E1F5FE;
+}
+*/
+.cardBattle h3 {
+	margin-bottom: 0;
+}
+.cardBattle #view > section > div > section > div {
+	padding: 2px;
+}
+.cardBattle #view > section > div > section > div > * {
+	margin: 2px;
+}
+
+.buttonBar {
+	display: flex;
+	flex-flow: row;
+	padding: 0;
+}
+.buttonBar button {
+	flex-grow: 1;
+}
+.buttonBar button:not(:first-child) {
+	margin-left: 4px;
+}
+button {
+	border: none;
+	border: solid 1px transparent;
+	border-radius: 2px;
+	line-height: 27px;
+	height: 27px;
+	padding: 0;
+}
+button[disabled] {
+	opacity: 0.35;
+}
+button:hover:not([disabled]), button:active:not([disabled]) {
+	border: solid 1px rgba(0,0,0,0.66);
+}
+button:hover:not([disabled]) {
+	box-shadow: 1px 0 0 rgba(255,255,255,0.4) inset, -1px 0 0 rgba(255,255,255,0.4) inset, 0 1px 0 rgba(255,255,255,0.4) inset, 0 -1px 0 rgba(255,255,255,0.4) inset, 0 1px 2px rgba(0,0,0,0.2);
+}
+button:hover:not([disabled]), button:active {
+	outline: none;
+}
+button.main:hover:active {
+	text-shadow: 0 1px 1px rgba(0,0,0,0.75);	
+}
+button:not(.main):hover:active {
+	text-shadow: 0 1px 2px rgba(0,0,0,0.2);	
+}
+button:not(.main) {
+	background: #ECEFF1;
+}
+button.main {
+	color: #fff;
+	font-weight: bold;
+}
+button.main:not([disabled]) {
+	background: #EF6C00;
+}
+button.main[disabled] {
+	background: #37474F;
+}
+button:active:hover:not([disabled]) {
+	box-shadow: 1px 0 1px rgba(0,0,0,0.1) inset, -1px 0 1px rgba(0,0,0,0.1) inset, 0 1px 1px rgba(0,0,0,0.1) inset, 0 -1px 1px rgba(0,0,0,0.1) inset, 0 1px 2px rgba(64,64,64,0.4) inset;
+	outline: none;
+}
+#char_info li b {
+	width: 60px;
+	display: inline-block;
+	text-align: right;
+}
+#you {
+	width: 200px;
 }

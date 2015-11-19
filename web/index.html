@@ -8,7 +8,7 @@
 	<script type="text/javascript" src="cb_params.js"></script>
 	<script type="text/javascript" src="cardbattle.js"></script>
 </head>
-<body class="loading">
+<body class="loading cardBattle">
 <form>
 <header>
 	<h1>Card Battle Ver <span id="ver"></span></h1>
@@ -25,26 +25,34 @@
 			<select id="playerId"></select>
 			<label>Password: </label>
 			<input id="password" type="password" />
-			<input id="connect" type="submit" value="Connect" />
+			<button id="connect" type="button" class="main">Connect</button>
 		</div>
 	</section>
 	<section id="you">
-		<h2>Your Profile</h2>
+		<h2>Your Profile - <span class="playerId"></span></h2>
 		<div>
 			<section id="character">
 				<h3>Select Character</h3>
 				<div>
-					<ul id="characterList">
-					</ul>
-					<div>
-						<button type="button" id="ready">Ready!</button>
-						<button type="button" id="cancel">Cancel</button>
-					</div>
+					<select class="picker" id="characterList"></select>
 				</div>
 			</section>
 			<section id="char_info">
 				<h3>Character Information</h3>
-				<div>Pick a character to show more information.</div>
+				<div><ul>
+					<li><b>Name:</b> <span></span></li>
+					<li><b>HP:</b> <span></span></li>
+					<li><b>Skill 1:</b> <span></span></li>
+					<li><b>Skill 2:</b> <span></span></li>
+					<li><b>Skill 3:</b> <span></span></li>
+				</ul></div>
+			</section>
+			<section id="battle_info">
+				<h3>Battle Information</h3>
+				<div class="buttonBar">
+					<button type="button" id="ready" class="main" disabled="disabled">Ready!</button>
+					<button type="button" id="cancel" disabled="disabled">Cancel</button>
+				</div>
 			</section>
 		</div>
 	</section>

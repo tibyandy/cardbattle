@@ -3,6 +3,7 @@ $(function () {
 	var _playerName = null;
 	
 	$('#growl').hide();
+	$('#you, #players').hide();
 	$.post('Login', checkLogin);
 	$('#connect').on('click', tryLogin);
 	$('#ver').html(CB.version);
@@ -51,6 +52,7 @@ $(function () {
 				growl('Welcome back, ' + _playerName + '!');
 				$('#login').hide();
 			}
+			$('#you, #players').fadeIn();
 		}
 		$('body').removeClass('loading');
 	};
@@ -66,6 +68,7 @@ $(function () {
 	function logout() {
 		growl('Disconnecting...');
 		$('#logout').hide();
+		$('#you, #players').fadeOut();
 		$.post('Login', {q: 'logout'}, afterLogout);
 	}
 

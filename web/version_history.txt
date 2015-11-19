@@ -19,7 +19,13 @@ ROADMAPS FUTUROS
 	at cardbattle.server.CardBattleServlet.doGet(CardBattleServlet.java:46)
 
 ==============================
-VERSÃO ATUAL
+
+VERSÃO ATUAL - 0.2.4
+Início: 19/nov/2015
+
+- Criação da apresentação de seleção de personagem e seleção de batalha.
+
+------------------------------
 
 Versão 0.2.3 - LOGIN
 Início: 18/nov/2015
@@ -30,8 +36,7 @@ Liberação: 18/nov/2015
 - Criação de cardbattle.js.
 - index.html antigo renomeado para debug.html.
 
-==============================
-VERSÕES ANTERIORES
+------------------------------
 
 Versão 0.2.2 - BATTLE ROOMS
 Início: 16/nov/2015
@@ -39,6 +44,8 @@ Liberação: 18/nov/2015
 
 - Implementação dos conceitos de BattleRoom e Player
 - BattleManager deixa de ser classe utilitária estática e passa a ser singleton
+
+------------------------------
 
 Versão 0.2.1 - REFACTORING
 Início: 14/nov/2015

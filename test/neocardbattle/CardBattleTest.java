@@ -15,8 +15,8 @@ public class CardBattleTest {
 		String jeffId = cb.login("Jeff");
 		cb.select(andyId, "Ayllan");
 		cb.select(jeffId, "Lash");
-		cb.ready(andyId);
-		cb.ready(jeffId);
+		cb.readyForBattle(andyId);
+		cb.readyForBattle(jeffId);
 		String[] andyReadyPlayers = cb.listReadyPlayers(andyId);
 		assertEquals(1, andyReadyPlayers.length);
 		String[] jeffReadyPlayers = cb.listReadyPlayers(jeffId);
@@ -25,8 +25,10 @@ public class CardBattleTest {
 		Battle battle = cb.challenge(jeffId, jeffReadyPlayers[0]);
 		assertNotNull(battle);
 		do {
-			cb.skill(andyId, 1);
-			cb.skill(jeffId, 1);
-		} while (cb.winner() == 0);
+			cb.skill(andyId, Skill.SLASH);
+			cb.skill(jeffId, Skill.MIND_BLAST);
+			cb.ready(andyId);
+			cb.ready(jeffId);
+		} while (cb.winner(andyId) == 0);
 	}
 }

@@ -13,7 +13,7 @@ public class CardBattleEngine {
 		players.getPlayer(playerToken).setCharacter(Character.get(characterName));
 	}
 
-	public void ready(String playerToken) {
+	public void readyForBattle(String playerToken) {
 		players.ready(playerToken, true);
 	}
 
@@ -29,12 +29,16 @@ public class CardBattleEngine {
 		return null;
 	}
 
-	public void skill(String andyId, int skillId) {
-		// TODO Auto-generated method stub
+	public void skill(String playerToken, Skill skill) {
+		battles.skill(players.getPlayer(playerToken).getName(), skill);
 	}
 
-	public int winner() {
+	public int winner(String playerToken) {
 		return 1;
+	}
+
+	public void ready(String playerToken) {
+		battles.ready(players.getPlayer(playerToken).getName());
 	}
 
 }

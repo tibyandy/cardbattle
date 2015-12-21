@@ -9,6 +9,14 @@ public class CardBattleEngine {
 		return players.login(string);
 	}
 
+	public Player isLogged(String playerToken) {
+		try {
+			return players.getPlayer(playerToken);
+		} catch (CardBattleRuntimeException e) {
+			return null;
+		}
+	}
+
 	public void select(String playerToken, String characterName) {
 		players.getPlayer(playerToken).setCharacter(Character.get(characterName));
 	}

@@ -31,4 +31,28 @@ public class CardBattleTest {
 			cb.ready(jeffId);
 		} while (cb.winner(andyId) == 0);
 	}
+
+	@Test
+	public void serverThreadTest() throws InterruptedException {
+		CardBattleServer cs = new CardBattleServer();
+		String playerToken = cs.requestToken("Andy");
+		System.out.println("Connect");
+		cs.connect(playerToken);
+		Thread.sleep(100L);
+		System.out.println("Com 1");
+		cs.sendCommand(playerToken, "com 1");
+		Thread.sleep(100L);
+		System.out.println("Com 2");
+		cs.sendCommand(playerToken, "com 2");
+		Thread.sleep(100L);
+		System.out.println("Com 3");
+		cs.sendCommand(playerToken, "com 3");
+		Thread.sleep(100L);
+		System.out.println("Com 4");
+		cs.sendCommand(playerToken, "com 4");
+		Thread.sleep(100L);
+		System.out.println("Disconnect");
+		cs.disconnect(playerToken);
+		Thread.sleep(100L);
+	}
 }

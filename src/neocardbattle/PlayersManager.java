@@ -19,7 +19,7 @@ public class PlayersManager {
 			playersTokenByName.remove(playerName);
 		}
 		// token = string de 2 chars dentre 1000 possibilidades + playerName
-		String token = Integer.toString((int) (Math.random() * 1000), 32);
+		String token = Integer.toString((int) (Math.random() * 1000) + 33, 33);
 		playersByToken.put(token, new Player(playerName));
 		playersTokenByName.put(playerName, token);
 		return token;

@@ -20,35 +20,43 @@ public class CardBattleServer {
 	}
 
 	public void connect(String playerToken) {
-		Player loggedPlayer = engine.isLogged(playerToken);
-		if (loggedPlayer != null) {
-			String playerName = loggedPlayer.getName();
+		String playerName = getPlayer(playerToken);
+		if (playerName != null) {
 			System.out.println("<" + playerName + ":" + playerToken + "> Connected.");
 			queuedCommandsByPlayerName.put(playerName, new ArrayList<>());
 			queuedThreadsByPlayerName.put(playerName, new ArrayList<>());
 			threadNumberByPlayerName.put(playerName, 0);
 			startThreadForPlayer(playerToken, playerName);
-		} else {
-			System.out.println(playerToken + ": invalid token attempt.");
 		}
 	}
 
 	public void sendCommand(String playerToken, String command) {
-		Player loggedPlayer = engine.isLogged(playerToken);
-		if (loggedPlayer != null) {
-			String playerName = loggedPlayer.getName();
+		String playerName = getPlayer(playerToken);
+		if (playerName != null) {
 			queuedCommandsByPlayerName.get(playerName).add(command);
 			queuedThreadsByPlayerName.get(playerName).remove(0).interrupt();
 			startThreadForPlayer(playerToken, playerName);
-		} else {
-			System.out.println(playerToken + ": invalid token attempt.");
 		}
 	}
 
+	public void disconnect(String playerToken) {
+		String playerName = getPlayer(playerToken);
+		if (playerName != null) {
+			queuedThreadsByPlayerName.get(playerName).remove(0).interrupt();
+		}
+	}
+
+	private String getPlayer(String playerToken) {
+		Player loggedPlayer = engine.isLogged(playerToken);
+		if (loggedPlayer == null) {
+			System.out.println(playerToken + ": invalid token attempt.");
+		}
+		return loggedPlayer == null ? null : loggedPlayer.getName();
+	}
+	
 	private void startThreadForPlayer(String playerToken, String playerName) {
-		String tokenAndName = "<" + playerName + ":" + playerToken + "> ";
 		final int threadNumber = threadNumberByPlayerName.get(playerName) + 1;
-		final String tokenAndNameAndThread = "<" + playerName + ":" + playerToken + ":" + threadNumber + "> ";
+		final String tokenAndNameAndThread = "<" + playerName + "|" + playerToken + "[" + threadNumber + "]> ";
 		Runnable runnable = () -> {
 			System.out.println(tokenAndNameAndThread + "Started.");
 			try {
@@ -66,19 +74,8 @@ public class CardBattleServer {
 			System.out.println(tokenAndNameAndThread + "Ended.");
 		};
 		Thread thread = new Thread(runnable);
-		queuedThreadsByPlayerName.get(playerName).add(thread);
 		thread.start();
+		queuedThreadsByPlayerName.get(playerName).add(thread);
 		threadNumberByPlayerName.put(playerName, threadNumber);
 	}
-
-	public void disconnect(String playerToken) {
-		Player loggedPlayer = engine.isLogged(playerToken);
-		if (loggedPlayer != null) {
-			String playerName = loggedPlayer.getName();
-			queuedThreadsByPlayerName.get(playerName).remove(0).interrupt();
-		} else {
-			System.out.println(playerToken + ": invalid token attempt.");
-		}
-	}
-	
 }

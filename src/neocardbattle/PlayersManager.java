@@ -44,7 +44,7 @@ public class PlayersManager {
 	public void ready(String playerToken, boolean ready) {
 		Player player = getPlayer(playerToken);
 		if (ready) {
-			if (player.getCharacter() == null) {
+			if (player.getCharacterName() == null) {
 				throw new CardBattleRuntimeException(CardBattleError.PLAYER_HAS_NO_CHARACTER_SELECTED);
 			}
 			readyPlayersByName.put(player.getName(), player);

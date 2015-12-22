@@ -3,7 +3,7 @@ package neocardbattle;
 public class Player {
 
 	private final String name;
-	private Character character;
+	private CharacterName characterName;
 	private CharacterInBattle characterInBattle;
 	private Player opponent;
 
@@ -11,12 +11,12 @@ public class Player {
 		this.name = name;
 	}
 
-	public void setCharacter(Character character) {
-		this.character = character;
+	public void setCharacter(CharacterName characterName) {
+		this.characterName = characterName;
 	}
 
-	public Character getCharacter() {
-		return character;
+	public CharacterName getCharacterName() {
+		return characterName;
 	}
 
 	public String getName() {
@@ -24,13 +24,13 @@ public class Player {
 	}
 	
 	public void engageInBattle(Battle battle) {
-		this.characterInBattle = CharacterInBattle.createFrom(battle, character);
+		this.characterInBattle = CharacterInBattle.createFrom(characterName);
 	}
 
 	public void engageInBattle(Battle battle, Player opponent) {
 		this.opponent = opponent;
 		opponent.setOpponent(this);
-		characterInBattle = CharacterInBattle.createFrom(battle, character);
+		characterInBattle = CharacterInBattle.createFrom(characterName);
 		CharacterInBattle opponentCharacter = opponent.getCharacterInBattle();
 		characterInBattle.setOpponent(opponentCharacter);
 		opponentCharacter.setOpponent(characterInBattle);

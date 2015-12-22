@@ -24,11 +24,23 @@ public class CardBattleTest {
 		assertNull(cb.challenge(andyId, andyReadyPlayers[0]));
 		Battle battle = cb.challenge(jeffId, jeffReadyPlayers[0]);
 		assertNotNull(battle);
+		BattleStatus.showStatus(battle);
+		cb.shuffleTable(andyId);
 		do {
-			cb.skill(andyId, Skill.SLASH);
-			cb.skill(jeffId, Skill.MIND_BLAST);
+			cb.skill(andyId, SkillName.SLASH);
+			BattleStatus.showStatus(battle);
+			cb.skill(jeffId, SkillName.MIND_BLAST);
+			BattleStatus.showStatus(battle);
 			cb.ready(andyId);
+			BattleStatus.showStatus(battle);
 			cb.ready(jeffId);
+			BattleStatus.showStatus(battle);
+			cb.evaluateSkills(andyId);
+			BattleStatus.showStatus(battle);
+			for (int i = 0; i < 5; i++) {
+				cb.getPrize(andyId, i);
+				BattleStatus.showStatus(battle);
+			}
 		} while (cb.winner(andyId) == 0);
 	}
 

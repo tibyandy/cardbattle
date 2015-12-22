@@ -18,7 +18,7 @@ public class CardBattleEngine {
 	}
 
 	public void select(String playerToken, String characterName) {
-		players.getPlayer(playerToken).setCharacter(Character.get(characterName));
+		players.getPlayer(playerToken).setCharacter(CharacterName.get(characterName));
 	}
 
 	public void readyForBattle(String playerToken) {
@@ -37,7 +37,7 @@ public class CardBattleEngine {
 		return null;
 	}
 
-	public void skill(String playerToken, Skill skill) {
+	public void skill(String playerToken, SkillName skill) {
 		battles.skill(players.getPlayer(playerToken).getName(), skill);
 	}
 
@@ -49,4 +49,15 @@ public class CardBattleEngine {
 		battles.ready(players.getPlayer(playerToken).getName());
 	}
 
+	public void shuffleTable(String playerToken) {
+		battles.shuffleTable(players.getPlayer(playerToken).getName());
+	}
+
+	public void evaluateSkills(String playerToken) {
+		battles.evaluateSkills(players.getPlayer(playerToken).getName());
+	}
+
+	public void getPrize(String playerToken, int i) {
+		battles.getPrize(players.getPlayer(playerToken).getName(), i);
+	}
 }
